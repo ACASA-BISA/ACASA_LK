@@ -78,14 +78,14 @@ const linkify = (text) => {
   return parts.flatMap((part, i) =>
     typeof part === "string"
       ? part.split(/(https?:\/\/[^\s]+)/g).map((subpart, j) =>
-          subpart.match(/^https?:\/\//) ? (
-            <a key={`${i}-${j}`} href={subpart} target="_blank" rel="noopener noreferrer" style={{ color: "#81c784" }}>
-              {subpart}
-            </a>
-          ) : (
-            subpart
-          )
+        subpart.match(/^https?:\/\//) ? (
+          <a key={`${i}-${j}`} href={subpart} target="_blank" rel="noopener noreferrer" style={{ color: "#81c784" }}>
+            {subpart}
+          </a>
+        ) : (
+          subpart
         )
+      )
       : part
   );
 };
@@ -101,7 +101,7 @@ const steps = [
       },
       {
         title: "Hazards",
-        desc: `The first step entails listing various potential hazards—such as heat stress, cold stress, and extreme weather events—that could adversely affect specific commodities and determining the levels and stages at which these hazards become significantly detrimental. This step involves a literature review to identify appropriate thresholds, expert consultations across participating countries, and stakeholder validation. For example, heat stress in rice is defined when maximum temperature exceeds 43°C. For livestock, such as cattle, heat stress was characterized using the Temperature Humidity Index (THI), with values exceeding 81 classified as hazardous. Intensity classes were determined using expert-informed k-means clustering, and frequency was categorized using statistical return period analysis. Finally, a combined hazard score—calculated as the product of intensity and frequency classes—was reclassified into five standard hazard categories for consistent spatial analysis. For baseline, the hazards are based on the Climate Hazard Centre’s CHIRPS and CHIRTS temperature and precipitation datasets. For future, deltas are computed for 5 CMIP6 models (GFDL-ESM4, IPSL-CM6A-LR, MPI-ESM1-2-HR, MPI-ESM2-0, UKESM1-0-LL) downscaled to 50km by ISIMIP group. The median of these deltas is added to the baseline maps to generate 2050s and 2080s maps for SSP2-4.5 and SSP5-8.5 scenarios.`,
+        desc: `The first step entails listing various potential hazards—such as heat stress, cold stress, and extreme weather events—that could adversely affect specific commodities and determining the levels and stages at which these hazards become significantly detrimental. This step involves a literature review to identify appropriate thresholds, expert consultations across participating countries, and stakeholder validation. For example, heat stress in rice is defined when maximum temperature exceeds 45°C. For livestock, such as cattle, heat stress was characterized using the Temperature Humidity Index (THI), with values exceeding 81 classified as hazardous. Intensity classes were determined using expert-informed k-means clustering, and frequency was categorized using statistical return period analysis. Finally, a combined hazard score—calculated as the product of intensity and frequency classes—was reclassified into five standard hazard categories for consistent spatial analysis. For baseline, the hazards are based on the Climate Hazard Centre’s CHIRPS and CHIRTS temperature and precipitation datasets. For future, deltas are computed for 5 CMIP6 models (GFDL-ESM4, IPSL-CM6A-LR, MPI-ESM1-2-HR, MPI-ESM2-0, UKESM1-0-LL) downscaled to 50km by ISIMIP group. The median of these deltas is added to the baseline maps to generate 2050s and 2080s maps for SSP2-4.5 and SSP5-8.5 scenarios.`,
       },
       {
         title: "Exposure",
