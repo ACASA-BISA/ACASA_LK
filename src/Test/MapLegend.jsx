@@ -152,6 +152,7 @@ const MapLegend = ({ tiff, breadcrumbData, layerType, apiUrl, legendType, showHe
           commodity_id: breadcrumbData?.commodity_id || null,
           climate_scenario_id: (tiff.metadata.year || hazards) ? breadcrumbData?.climate_scenario_id : 1,
           year: tiff.metadata.year || null,
+          analysis_scope_id: breadcrumbData?.analysis_scope_id || null,
           data_source_id: breadcrumbData?.data_source_id || null,
           visualization_scale_id: breadcrumbData?.visualization_scale_id || null,
           layer_id: tiff.metadata.adaptation_id || tiff.metadata.layer_id,

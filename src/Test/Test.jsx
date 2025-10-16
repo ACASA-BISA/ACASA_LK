@@ -1073,7 +1073,7 @@ function Test() {
                                                                                         target: { value: commodity.commodity_id },
                                                                                     })
                                                                                 }
-                                                                                disabled={!commodity.status || isLoading || mapLoading}
+                                                                                disabled={!commodity.status || isLoading || mapLoading || selectedScopeId === 2}
                                                                                 color="primary"
                                                                                 style={{ textAlign: "left!important" }}
                                                                             />
