@@ -1195,7 +1195,7 @@ function MapViewer({
       const isBaseline = layerName === "Baseline (2000s)";
       const year = isBaseline ? "" : (layerName === "2050s" ? "2050" : layerName === "2080s" ? "2080" : "");
       // Construct filename
-      const fileName = `${countryName}_${commodityName}_${sub_layer_name}_${intensityName}_${changeName}_${scenarioName}${year ? `_${year}` : ""}.tif`;
+      const fileName = `${countryName}${memoizedFilters.region.length > 1 ? `_${memoizedFilters.region[0]}` : ""}_${commodityName}_${sub_layer_name}_${intensityName}_${changeName}_${scenarioName}${year ? `_${year}` : ""}.tif`;
       const blob = new Blob([arrayBuffer], { type: "image/tiff" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -1253,7 +1253,7 @@ function MapViewer({
       const isBaseline = layerName === "Baseline (2000s)";
       const year = isBaseline ? "" : (layerName === "2050s" ? "2050" : layerName === "2080s" ? "2080" : "");
       // Construct filename
-      const fileName = `${countryName}_${commodityName}_${sub_layer_name}_${intensityName}_${changeName}_${scenarioName}${year ? `_${year}` : ""}.csv`;
+      const fileName = `${countryName}${memoizedFilters.region.length > 1 ? `_${memoizedFilters.region[0]}` : ""}_${commodityName}_${sub_layer_name}_${intensityName}_${changeName}_${scenarioName}${year ? `_${year}` : ""}.csv`;
       const payload = {
         layer_type: tiffMetadata.layer_type,
         country_id: breadcrumbData?.country_id || null,
@@ -1331,7 +1331,7 @@ function MapViewer({
       const isBaseline = layerName === "Baseline (2000s)";
       const year = isBaseline ? "" : (layerName === "2050s" ? "2050" : layerName === "2080s" ? "2080" : "");
       // Construct filename
-      const fileName = `${countryName}_${commodityName}_${sub_layer_name}_${intensityName}_${changeName}_${scenarioName}${year ? `_${year}` : ""}.jpg`;
+      const fileName = `${countryName}${memoizedFilters.region.length > 1 ? `_${memoizedFilters.region[0]}` : ""}_${commodityName}_${sub_layer_name}_${intensityName}_${changeName}_${scenarioName}${year ? `_${year}` : ""}.jpg`;
       const mapContainer = mapRefs.current[mapIndex];
       if (!mapContainer) throw new Error("Map container not found");
       if (mapInstances.current[mapIndex]) {
