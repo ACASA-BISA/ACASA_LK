@@ -15,7 +15,6 @@ import html2canvas from "html2canvas";
 import MapLegend from "./MapLegend";
 import DownloadDropdown from "./DownloadDropdown";
 import AnalyticsPage from "./AnalyticsPage";
-
 // Leaflet control setup
 L.Control.MapControls = L.Control.extend({
   options: {
@@ -68,7 +67,6 @@ L.Control.MapControls = L.Control.extend({
 L.control.mapControls = function (mapControls) {
   return new L.Control.MapControls(mapControls);
 };
-
 function MapViewer({
   drawerOpen,
   filters,
@@ -112,7 +110,6 @@ function MapViewer({
   const hasRenderedRef = useRef([]);
   const firstTime = useRef(true);
   const throttledSyncRefs = useRef([]);
-
   // Memoize filters
   const memoizedFilters = useMemo(
     () => ({
@@ -124,11 +121,9 @@ function MapViewer({
     }),
     [filters]
   );
-
   useEffect(() => {
     setMapLoading(internalMapLoading.some(loading => loading));
   }, [internalMapLoading, setMapLoading]);
-
   useEffect(() => {
     if (
       +memoizedFilters?.commodity_type_id === 1 &&
@@ -168,9 +163,9 @@ function MapViewer({
           setAdaptationTabs([]);
           setSelectedAdaptationTabId("");
           // Swal.fire({
-          //   icon: "error",
-          //   title: "Error",
-          //   text: err.message || "Error loading adaptation tabs",
+          // icon: "error",
+          // title: "Error",
+          // text: err.message || "Error loading adaptation tabs",
           // });
         }
       };
@@ -180,7 +175,6 @@ function MapViewer({
       setSelectedAdaptationTabId("");
     }
   }, [memoizedFilters?.layer_type, apiUrl]);
-
   // Updated syncMaps with robust validation
   const syncMaps = useCallback(
     _.throttle((sourceMap, sourceIndex) => {
@@ -228,7 +222,6 @@ function MapViewer({
     }, 50),
     [isSyncing, viewMode]
   );
-
   const cleanupMaps = useCallback(() => {
     // Cancel all throttled sync calls
     syncMaps.cancel();
@@ -270,7 +263,6 @@ function MapViewer({
     georasterCache.current.clear();
     hasRenderedRef.current = [];
   }, [syncMaps]);
-
   const updateFullscreenButton = (button, index) => {
     if (button) {
       const isFull = isFullscreen[index] || false;
@@ -278,13 +270,11 @@ function MapViewer({
       button.title = isFull ? "Exit Fullscreen" : "Enter Fullscreen";
     }
   };
-
   const getTileLayerUrl = () => {
     return theme.palette.mode === "dark"
       ? "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
       : "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}";
   };
-
   const updateGeoTiffLayer = useCallback(async (tiff, index) => {
     if (!mapInstances.current[index] || !mapRefs.current[index] || !tiff || tiff.noGeoTiff || !tiff.arrayBuffer || !tiff.metadata) {
       setInternalMapLoading(prev => {
@@ -414,7 +404,6 @@ function MapViewer({
       });
     }
   }, []);
-
   const renderMapLayers = useCallback(
     (geoJson, bbox, districtGeoJson, districtBbox, tiff, index) => {
       const map = mapInstances.current[index];
@@ -469,7 +458,6 @@ function MapViewer({
         },
       });
       geojsonFeatureGroup.addLayer(geojsonLayer);
-
       // --- District GeoJSON boundaries (only when admin_level is "country") ---
       if (districtGeoJson && memoizedFilters.admin_level === "country") {
         const districtFeatureGroup = L.featureGroup();
@@ -495,7 +483,6 @@ function MapViewer({
         districtFeatureGroup.addTo(map);
         layerRefs.current[index].push(districtFeatureGroup);
       }
-
       // --- MASK outside geojson ---
       const worldBounds = [
         [
@@ -586,7 +573,6 @@ function MapViewer({
     },
     [theme.palette.mode, memoizedFilters.admin_level, updateGeoTiffLayer]
   );
-
   // Ensure each map always gets geojson + masking when data changes
   useEffect(() => {
     const debouncedRender = _.debounce(() => {
@@ -626,7 +612,6 @@ function MapViewer({
     debouncedRender();
     return () => debouncedRender.cancel();
   }, [memoizedFilters?.geojson, memoizedFilters?.bbox, memoizedFilters?.districtGeojson, memoizedFilters?.districtBbox, tiffData, renderMapLayers]);
-
   const initializeMaps = useCallback(() => {
     if (mapsInitializedRef.current) return;
     mapRefs.current = mapRefs.current.slice(0, 3);
@@ -753,7 +738,6 @@ function MapViewer({
     });
     mapsInitializedRef.current = initializedCount > 0;
   }, [isFullscreen, syncMaps, theme.palette.mode, tiffData, updateGeoTiffLayer]);
-
   useEffect(() => {
     // Debounce initialization to ensure DOM is ready
     const initTimeout = setTimeout(() => {
@@ -761,7 +745,6 @@ function MapViewer({
     }, 100);
     return () => clearTimeout(initTimeout);
   }, [initializeMaps]);
-
   useEffect(() => {
     if (lastViewModeRef.current === viewMode) return;
     lastViewModeRef.current = viewMode;
@@ -803,7 +786,6 @@ function MapViewer({
     }, 200);
     return () => clearTimeout(syncTimeout);
   }, [viewMode, tiffData, memoizedFilters.geojson, memoizedFilters.bbox, memoizedFilters.districtGeojson, memoizedFilters.districtBbox, renderMapLayers, syncMaps, initializeMaps]);
-
   useEffect(() => {
     mapInstances.current.forEach((map, index) => {
       if (map && tileLayerRefs.current[index] && mapRefs.current[index]) {
@@ -839,7 +821,6 @@ function MapViewer({
       }
     });
   }, [theme.palette.mode]);
-
   const fetchWithRetry = async (url, options, retries = 1, backoff = 300) => {
     for (let i = 0; i < retries; i++) {
       try {
@@ -852,7 +833,6 @@ function MapViewer({
       }
     }
   };
-
   const fetchTiffData = async () => {
     if (isFetchingRef.current) return;
     isFetchingRef.current = true;
@@ -1109,7 +1089,6 @@ function MapViewer({
     }
     firstTime.current = false;
   };
-
   useEffect(() => {
     if (
       !memoizedFilters ||
@@ -1127,9 +1106,7 @@ function MapViewer({
     debouncedFetch();
     return () => debouncedFetch.cancel();
   }, [memoizedFilters, selectedAdaptationTabId]);
-
   const memoizedTiffData = useMemo(() => tiffData, [tiffData]);
-
   const debouncedRenderMaps = useCallback(
     _.debounce(() => {
       if (memoizedTiffData.length && memoizedFilters?.geojson && memoizedFilters?.bbox && allDataReady) {
@@ -1155,12 +1132,10 @@ function MapViewer({
     }, 150),
     [memoizedTiffData, memoizedFilters.geojson, memoizedFilters.bbox, memoizedFilters.districtGeojson, memoizedFilters.districtBbox, allDataReady, renderMapLayers, viewMode]
   );
-
   useEffect(() => {
     debouncedRenderMaps();
     return () => debouncedRenderMaps.cancel();
   }, [debouncedRenderMaps]);
-
   useEffect(() => {
     const observer = new MutationObserver(() => {
       const paths = document.querySelectorAll("path.leaflet-interactive");
@@ -1174,7 +1149,6 @@ function MapViewer({
     });
     return () => observer.disconnect();
   }, []);
-
   useEffect(() => {
     if (import.meta.hot) {
       import.meta.hot.on("vite:beforeUpdate", () => {
@@ -1187,7 +1161,6 @@ function MapViewer({
       });
     }
   }, [cleanupMaps, initializeMaps]);
-
   const handleDownloadGeoTIFF = useCallback((arrayBuffer, layerName) => {
     if (!arrayBuffer || arrayBuffer.byteLength === 0) {
       console.error("Cannot download GeoTIFF: arrayBuffer is empty or invalid", { layerName, byteLength: arrayBuffer?.byteLength });
@@ -1212,7 +1185,11 @@ function MapViewer({
       const scenarioName = scenario
         ? scenario.scenario?.replace(/\s+/g, "") || "UnknownScenario"
         : "NoScenarioSelected";
-      const sub_layer_name = memoizedFilters.sub_layer_name;
+      let sub_layer_name = memoizedFilters.sub_layer_name;
+      if (+memoizedFilters?.commodity_type_id === 1 && (memoizedFilters?.layer_type === "adaptation" || memoizedFilters?.layer_type === "adaptation_croptab")) {
+        const allTabs = adaptationTabs.flatMap(tab => tab.subTabs ? tab.subTabs : [tab]);
+        sub_layer_name = allTabs.find(tab => +tab.tab_id === +breadcrumbData?.adaptation_croptab_id)?.tab_name || sub_layer_name;
+      }
       const intensityName = selectedIntensityMetric.toLowerCase() === "intensity frequency" ? "IntensityFrequency" : "Intensity";
       const changeName = selectedChangeMetric.toLowerCase() === "absolute" ? "Absolute" : "Delta";
       const isBaseline = layerName === "Baseline (2000s)";
@@ -1247,8 +1224,9 @@ function MapViewer({
     selectedChangeMetric,
     selectedScenario,
     climateScenarios,
+    adaptationTabs,
+    breadcrumbData,
   ]);
-
   const handleDownloadTable = useCallback(async (layerName, tiffMetadata) => {
     try {
       // Retrieve names with fallback checks
@@ -1264,7 +1242,11 @@ function MapViewer({
       const scenarioName = scenario
         ? scenario.scenario?.replace(/\s+/g, "") || "UnknownScenario"
         : "NoScenarioSelected";
-      const sub_layer_name = memoizedFilters.sub_layer_name;
+      let sub_layer_name = memoizedFilters.sub_layer_name;
+      if (+memoizedFilters?.commodity_type_id === 1 && (memoizedFilters?.layer_type === "adaptation" || memoizedFilters?.layer_type === "adaptation_croptab")) {
+        const allTabs = adaptationTabs.flatMap(tab => tab.subTabs ? tab.subTabs : [tab]);
+        sub_layer_name = allTabs.find(tab => +tab.tab_id === +selectedAdaptationTabId)?.tab_name || sub_layer_name;
+      }
       const intensityName = selectedIntensityMetric.toLowerCase() === "intensity frequency" ? "IntensityFrequency" : "Intensity";
       const changeName = selectedChangeMetric.toLowerCase() === "absolute" ? "Absolute" : "Delta";
       const isBaseline = layerName === "Baseline (2000s)";
@@ -1322,7 +1304,6 @@ function MapViewer({
     breadcrumbData,
     apiUrl,
   ]);
-
   const handleDownloadImage = useCallback(async (layerName, mapIndex) => {
     try {
       // Retrieve names with fallback checks
@@ -1338,7 +1319,11 @@ function MapViewer({
       const scenarioName = scenario
         ? scenario.scenario?.replace(/\s+/g, "") || "UnknownScenario"
         : "NoScenarioSelected";
-      const sub_layer_name = memoizedFilters.sub_layer_name;
+      let sub_layer_name = memoizedFilters.sub_layer_name;
+      if (+memoizedFilters?.commodity_type_id === 1 && (memoizedFilters?.layer_type === "adaptation" || memoizedFilters?.layer_type === "adaptation_croptab")) {
+        const allTabs = adaptationTabs.flatMap(tab => tab.subTabs ? tab.subTabs : [tab]);
+        sub_layer_name = allTabs.find(tab => +tab.tab_id === +breadcrumbData?.adaptation_croptab_id)?.tab_name || sub_layer_name;
+      }
       const intensityName = selectedIntensityMetric.toLowerCase() === "intensity frequency" ? "IntensityFrequency" : "Intensity";
       const changeName = selectedChangeMetric.toLowerCase() === "absolute" ? "Absolute" : "Delta";
       const isBaseline = layerName === "Baseline (2000s)";
@@ -1395,12 +1380,12 @@ function MapViewer({
     selectedChangeMetric,
     selectedScenario,
     climateScenarios,
+    adaptationTabs,
+    breadcrumbData,
   ]);
-
   const handleIntensityMetricChange = value => {
     setSelectedIntensityMetric(value);
   };
-
   useEffect(() => {
     if (firstTime.current) {
       return;
@@ -1448,11 +1433,9 @@ function MapViewer({
       }
     });
   }, [selectedIntensityMetric]);
-
   const handleScenarioChange = value => {
     setSelectedScenario(value);
   };
-
   useEffect(() => {
     if (firstTime.current) {
       return;
@@ -1499,11 +1482,9 @@ function MapViewer({
       }
     });
   }, [selectedScenario]);
-
   const handleChangeMetricChange = value => {
     setSelectedChangeMetric(value);
   };
-
   useEffect(() => {
     if (firstTime.current) {
       return;
@@ -1550,7 +1531,6 @@ function MapViewer({
       }
     });
   }, [selectedChangeMetric]);
-
   const fetchGeoTiff = async (file, index, metric, changeMetric, onComplete) => {
     if (mapInstances.current[index] && layerRefs.current[index]) {
       const oldLayer = layerRefs.current[index].find(layer => layer instanceof GeoRasterLayer);
@@ -1702,9 +1682,9 @@ function MapViewer({
     } catch (err) {
       console.error("Error fetching GeoTIFF:", err);
       // Swal.fire({
-      //   icon: "error",
-      //   title: "Error",
-      //   text: err.message || "Failed to load GeoTIFF data.",
+      // icon: "error",
+      // title: "Error",
+      // text: err.message || "Failed to load GeoTIFF data.",
       // });
       setTiffData(prev => {
         const newTiffData = [...prev];
@@ -1724,7 +1704,6 @@ function MapViewer({
       onComplete();
     }
   };
-
   useEffect(() => {
     const handlePopoverFocus = () => {
       const popovers = document.querySelectorAll(".MuiPopover-root[aria-hidden='true']");
@@ -1736,13 +1715,10 @@ function MapViewer({
     document.addEventListener("focusin", handlePopoverFocus);
     return () => document.removeEventListener("focusin", handlePopoverFocus);
   }, []);
-
   const getGridLayout = () => {
     return { xs: viewMode === "single" ? 12 : 4, height: "100%" };
   };
-
   const gridLayout = getGridLayout();
-
   const handleAdaptationTabChange = tabId => {
     const validTabIds = adaptationTabs.flatMap(tab =>
       tab.tab_id === "gender_group" ? tab.subTabs.map(subTab => subTab.tab_id) : [tab.tab_id]
@@ -1754,19 +1730,15 @@ function MapViewer({
       setSelectedAdaptationTabId(validTabIds[0] || "");
     }
   };
-
   const toggleAnalytics = () => {
     setShowAnalytics(prev => !prev);
   };
-
   const handleViewSingle = () => {
     setViewMode("single");
   };
-
   const handleViewAll = () => {
     setViewMode("all");
   };
-
   const defaultTiffData = Array(3).fill(null).map((_, index) => ({
     arrayBuffer: null,
     metadata: {
@@ -1781,7 +1753,6 @@ function MapViewer({
       change_metric: null,
     },
   }));
-
   const selectStyles = {
     minWidth: "130px",
     height: "22px",
@@ -1799,7 +1770,6 @@ function MapViewer({
       color: theme.palette.grey[700],
     },
   };
-
   const checkLegend = (index) => {
     const params = {
       "adaptation_croptab_id": null,
@@ -1815,12 +1785,10 @@ function MapViewer({
       "intensity_metric_id": 2,
       "change_metric_id": 2
     };
-
     // Check if tiffData[index] exists, has noGeoTiff set to false, and has arrayBuffer
     if (!tiffData[index] || tiffData[index].noGeoTiff || !tiffData[index].arrayBuffer) {
       return false;
     }
-
     // Validate that all required fields in params are non-null (or valid where applicable)
     const requiredFields = [
       "layer_type",
@@ -1832,21 +1800,17 @@ function MapViewer({
       "intensity_metric_id",
       "change_metric_id"
     ];
-
     // Fields that can be null (optional)
     const optionalFields = ["adaptation_croptab_id", "country_id", "state_id", "year"];
-
     // Check if all required fields are non-null and valid
     for (const field of requiredFields) {
       if (params[field] === null || params[field] === undefined) {
         return false;
       }
     }
-
     // If all required fields are valid, return true
     return true;
   };
-
   return (
     <Box
       sx={{
@@ -2063,7 +2027,6 @@ function MapViewer({
                   <Typography>
                     {tiffData[index]?.metadata.layer_name || defaultTiffData[index].metadata.layer_name}
                   </Typography>
-
                   {memoizedFilters.layer_type && memoizedFilters.layer_type !== "commodity" && index === 0 && toggleIntensityMetric && (
                     <Select
                       value={selectedIntensityMetric}
@@ -2075,7 +2038,6 @@ function MapViewer({
                       <MenuItem value="Intensity Frequency">Intensity Frequency</MenuItem>
                     </Select>
                   )}
-
                   {memoizedFilters.layer_type && memoizedFilters.layer_type !== "commodity" && index !== 0 && (
                     <>
                       <Select
@@ -2092,7 +2054,6 @@ function MapViewer({
                             </MenuItem>
                           ))}
                       </Select>
-
                       {toggleChangeMetric && (
                         <Select
                           value={selectedChangeMetric}
@@ -2107,7 +2068,6 @@ function MapViewer({
                     </>
                   )}
                 </Box>
-
                 {index === 0 && (
                   <Box
                     sx={{
@@ -2254,5 +2214,4 @@ function MapViewer({
     </Box>
   );
 }
-
 export default MapViewer;
