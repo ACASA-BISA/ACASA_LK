@@ -1340,6 +1340,24 @@ function MapViewer({
       }
       const mapAndLegendContainer = mapContainer.closest(".map-and-legend-container");
       if (!mapAndLegendContainer) throw new Error("Parent container for map and legend not found");
+
+      // Find the legend container (Paper component with role="tooltip")
+      const legendContainer = mapAndLegendContainer.querySelector('div[role="tooltip"]');
+      if (!legendContainer) throw new Error("Legend container not found");
+
+      // Store original styles
+      const originalContainerWidth = mapAndLegendContainer.style.width;
+      const originalLegendWidth = legendContainer.style.width;
+      const originalLegendMaxWidth = legendContainer.style.maxWidth;
+      const originalLegendMinWidth = legendContainer.style.minWidth;
+
+      // Force nowrap for all Typography elements within legend to prevent wrapping
+      const typographyElements = legendContainer.querySelectorAll('p');
+      const originalTypographyStyles = Array.from(typographyElements).map(el => el.style.whiteSpace);
+      typographyElements.forEach(el => {
+        el.style.whiteSpace = "nowrap";
+      });
+
       let imgData;
       try {
         imgData = await domtoimage.toJpeg(mapAndLegendContainer, {
@@ -1356,6 +1374,16 @@ function MapViewer({
         });
         imgData = canvas.toDataURL("image/jpeg", 0.8);
       }
+
+      // Restore original styles
+      mapAndLegendContainer.style.width = originalContainerWidth;
+      legendContainer.style.width = originalLegendWidth;
+      legendContainer.style.maxWidth = originalLegendMaxWidth;
+      legendContainer.style.minWidth = originalLegendMinWidth;
+      typographyElements.forEach((el, index) => {
+        el.style.whiteSpace = originalTypographyStyles[index];
+      });
+
       if (!imgData) throw new Error("Failed to capture image data");
       const a = document.createElement("a");
       a.href = imgData;
