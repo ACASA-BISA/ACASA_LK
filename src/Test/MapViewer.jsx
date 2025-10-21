@@ -1186,10 +1186,10 @@ function MapViewer({
         ? scenario.scenario?.replace(/\s+/g, "") || "UnknownScenario"
         : "NoScenarioSelected";
       let sub_layer_name = memoizedFilters.sub_layer_name;
-      if (+memoizedFilters?.commodity_type_id === 1 && (memoizedFilters?.layer_type === "adaptation" || memoizedFilters?.layer_type === "adaptation_croptab")) {
-        const allTabs = adaptationTabs.flatMap(tab => tab.subTabs ? tab.subTabs : [tab]);
-        sub_layer_name = allTabs.find(tab => +tab.tab_id === +breadcrumbData?.adaptation_croptab_id)?.tab_name || sub_layer_name;
-      }
+      // if (+memoizedFilters?.commodity_type_id === 1 && (memoizedFilters?.layer_type === "adaptation" || memoizedFilters?.layer_type === "adaptation_croptab")) {
+      //   const allTabs = adaptationTabs.flatMap(tab => tab.subTabs ? tab.subTabs : [tab]);
+      //   sub_layer_name = allTabs.find(tab => +tab.tab_id === +breadcrumbData?.adaptation_croptab_id)?.tab_name || sub_layer_name;
+      // }
       const intensityName = selectedIntensityMetric.toLowerCase() === "intensity frequency" ? "IntensityFrequency" : "Intensity";
       const changeName = selectedChangeMetric.toLowerCase() === "absolute" ? "Absolute" : "Delta";
       const isBaseline = layerName === "Baseline (2000s)";
@@ -1220,6 +1220,7 @@ function MapViewer({
     memoizedFilters.commodity_id,
     memoizedFilters.visualization_scale_id,
     memoizedFilters.visualizationScales,
+    memoizedFilters.sub_layer_name,
     selectedIntensityMetric,
     selectedChangeMetric,
     selectedScenario,
@@ -1243,10 +1244,10 @@ function MapViewer({
         ? scenario.scenario?.replace(/\s+/g, "") || "UnknownScenario"
         : "NoScenarioSelected";
       let sub_layer_name = memoizedFilters.sub_layer_name;
-      if (+memoizedFilters?.commodity_type_id === 1 && (memoizedFilters?.layer_type === "adaptation" || memoizedFilters?.layer_type === "adaptation_croptab")) {
-        const allTabs = adaptationTabs.flatMap(tab => tab.subTabs ? tab.subTabs : [tab]);
-        sub_layer_name = allTabs.find(tab => +tab.tab_id === +selectedAdaptationTabId)?.tab_name || sub_layer_name;
-      }
+      // if (+memoizedFilters?.commodity_type_id === 1 && (memoizedFilters?.layer_type === "adaptation" || memoizedFilters?.layer_type === "adaptation_croptab")) {
+      //   const allTabs = adaptationTabs.flatMap(tab => tab.subTabs ? tab.subTabs : [tab]);
+      //   sub_layer_name = allTabs.find(tab => +tab.tab_id === +selectedAdaptationTabId)?.tab_name || sub_layer_name;
+      // }
       const intensityName = selectedIntensityMetric.toLowerCase() === "intensity frequency" ? "IntensityFrequency" : "Intensity";
       const changeName = selectedChangeMetric.toLowerCase() === "absolute" ? "Absolute" : "Delta";
       const isBaseline = layerName === "Baseline (2000s)";
@@ -1297,6 +1298,7 @@ function MapViewer({
     memoizedFilters.commodity_id,
     memoizedFilters.visualization_scale_id,
     memoizedFilters.visualizationScales,
+    memoizedFilters.sub_layer_name,
     selectedIntensityMetric,
     selectedChangeMetric,
     selectedScenario,
@@ -1320,10 +1322,10 @@ function MapViewer({
         ? scenario.scenario?.replace(/\s+/g, "") || "UnknownScenario"
         : "NoScenarioSelected";
       let sub_layer_name = memoizedFilters.sub_layer_name;
-      if (+memoizedFilters?.commodity_type_id === 1 && (memoizedFilters?.layer_type === "adaptation" || memoizedFilters?.layer_type === "adaptation_croptab")) {
-        const allTabs = adaptationTabs.flatMap(tab => tab.subTabs ? tab.subTabs : [tab]);
-        sub_layer_name = allTabs.find(tab => +tab.tab_id === +breadcrumbData?.adaptation_croptab_id)?.tab_name || sub_layer_name;
-      }
+      // if (+memoizedFilters?.commodity_type_id === 1 && (memoizedFilters?.layer_type === "adaptation" || memoizedFilters?.layer_type === "adaptation_croptab")) {
+      //   const allTabs = adaptationTabs.flatMap(tab => tab.subTabs ? tab.subTabs : [tab]);
+      //   sub_layer_name = allTabs.find(tab => +tab.tab_id === +breadcrumbData?.adaptation_croptab_id)?.tab_name || sub_layer_name;
+      // }
       const intensityName = selectedIntensityMetric.toLowerCase() === "intensity frequency" ? "IntensityFrequency" : "Intensity";
       const changeName = selectedChangeMetric.toLowerCase() === "absolute" ? "Absolute" : "Delta";
       const isBaseline = layerName === "Baseline (2000s)";
@@ -1376,6 +1378,7 @@ function MapViewer({
     memoizedFilters.commodity_id,
     memoizedFilters.visualization_scale_id,
     memoizedFilters.visualizationScales,
+    memoizedFilters.sub_layer_name,
     selectedIntensityMetric,
     selectedChangeMetric,
     selectedScenario,
