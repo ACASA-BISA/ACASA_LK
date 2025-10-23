@@ -1161,7 +1161,127 @@ function MapViewer({
       });
     }
   }, [cleanupMaps, initializeMaps]);
-  const handleDownloadGeoTIFF = useCallback((arrayBuffer, layerName) => {
+
+  const handleDownloadGeoTIFF = useCallback(async (tiff) => {
+    const { metadata } = tiff;
+    if (!metadata || !metadata.source_file) {
+      Swal.fire({
+        icon: "error",
+        title: "Download Failed",
+        text: "No valid metadata found for this layer.",
+      });
+      return;
+    }
+
+    try {
+      // Fetch the RAW GeoTIFF from backend
+      const response = await fetchWithRetry(`${apiUrl}/layers/geotiff/raw`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          admin_level: memoizedFilters.admin_level,
+          admin_level_id: memoizedFilters.admin_level_id,
+          source_file: metadata.source_file,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch raw GeoTIFF: ${response.status}`);
+      }
+
+      // Get the arrayBuffer for raw TIF
+      const rawArrayBuffer = await response.arrayBuffer();
+
+      if (!rawArrayBuffer || rawArrayBuffer.byteLength === 0) {
+        throw new Error("Received empty or invalid raw GeoTIFF.");
+      }
+
+      // Construct a filename as before
+      const countryName =
+        memoizedFilters.country_id === 0
+          ? "SouthAsia"
+          : memoizedFilters.countries?.find(
+            (c) => +c.country_id === +memoizedFilters.country_id
+          )?.country?.replace(/\s+/g, "") || "UnknownCountry";
+
+      const commodityName =
+        memoizedFilters.commodity_id && memoizedFilters.commodities?.length
+          ? memoizedFilters.commodities.find(
+            (c) => +c.commodity_id === +memoizedFilters.commodity_id
+          )?.commodity?.replace(/\s+/g, "") || "UnknownCommodity"
+          : "NoCommoditySelected";
+
+      const scenario =
+        selectedScenario && climateScenarios.length
+          ? climateScenarios.find(
+            (s) => +s.scenario_id === parseInt(selectedScenario)
+          )
+          : null;
+
+      const scenarioName = scenario
+        ? scenario.scenario?.replace(/\s+/g, "") || "UnknownScenario"
+        : "NoScenarioSelected";
+
+      let sub_layer_name = memoizedFilters.sub_layer_name;
+      const intensityName =
+        selectedIntensityMetric.toLowerCase() === "intensity frequency"
+          ? "IntensityFrequency"
+          : "Intensity";
+      const changeName =
+        selectedChangeMetric.toLowerCase() === "absolute"
+          ? "Absolute"
+          : "Delta";
+
+      const isBaseline = metadata.layer_name === "Baseline (2000s)";
+      const year = isBaseline
+        ? ""
+        : metadata.layer_name === "2050s"
+          ? "2050"
+          : metadata.layer_name === "2080s"
+            ? "2080"
+            : "";
+
+      const fileName = `${countryName}${memoizedFilters.region.length > 1 ? `_${memoizedFilters.region[0]}` : ""
+        }_${commodityName}_${sub_layer_name}_${intensityName}_${changeName}_${isBaseline ? `Baseline` : scenarioName
+        }${year ? `_${year}` : ""}.tif`;
+
+      // Create blob from raw array buffer
+      const blob = new Blob([rawArrayBuffer], { type: "image/tiff" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("GeoTIFF download error:", err);
+      Swal.fire({
+        icon: "error",
+        title: "Download Failed",
+        text: "Failed to download GeoTIFF file.",
+      });
+    }
+  }, [
+    apiUrl,
+    memoizedFilters.admin_level,
+    memoizedFilters.admin_level_id,
+    memoizedFilters.country_id,
+    memoizedFilters.countries,
+    memoizedFilters.commodities,
+    memoizedFilters.commodity_id,
+    memoizedFilters.visualization_scale_id,
+    memoizedFilters.visualizationScales,
+    memoizedFilters.sub_layer_name,
+    memoizedFilters.region,
+    selectedIntensityMetric,
+    selectedChangeMetric,
+    selectedScenario,
+    climateScenarios,
+  ]);
+
+  {/*const handleDownloadGeoTIFF = useCallback((arrayBuffer, layerName) => {
     if (!arrayBuffer || arrayBuffer.byteLength === 0) {
       console.error("Cannot download GeoTIFF: arrayBuffer is empty or invalid", { layerName, byteLength: arrayBuffer?.byteLength });
       Swal.fire({
@@ -1227,7 +1347,7 @@ function MapViewer({
     climateScenarios,
     adaptationTabs,
     breadcrumbData,
-  ]);
+  ]); */}
   const handleDownloadTable = useCallback(async (layerName, tiffMetadata) => {
     try {
       // Retrieve names with fallback checks
@@ -2205,9 +2325,7 @@ function MapViewer({
                     layerName={tiffData[index].metadata.layer_name}
                     layerType={memoizedFilters?.layer_type}
                     mapIndex={index}
-                    onDownloadGeoTIFF={() =>
-                      handleDownloadGeoTIFF(tiffData[index].downloadArrayBuffer, tiffData[index].metadata.layer_name)
-                    }
+                    onDownloadGeoTIFF={() => handleDownloadGeoTIFF(tiffData[index])}
                     onDownloadTable={() => handleDownloadTable(tiffData[index].metadata.layer_name, tiffData[index].metadata)}
                     onDownloadImage={() => handleDownloadImage(tiffData[index].metadata.layer_name, index)}
                   />
