@@ -47,7 +47,7 @@ const MapLegend = ({ tiff, breadcrumbData, layerType, apiUrl, legendType, showHe
     return !diffcrop.includes(breadcrumbData?.commodityLabel?.toLowerCase());
   };
 
-  const calcpop = (popu) => {
+  /*const calcpop = (popu) => {
     const value = Number(popu) || 0;
     if (value === 0) return "0";
     if (value <= 100_000) return "<\u00A00.1\u00A0M";
@@ -62,6 +62,32 @@ const MapLegend = ({ tiff, breadcrumbData, layerType, apiUrl, legendType, showHe
     if (value <= 100_000) return "<\u00A00.1" + unit;
     const areaInMillions = value / 1_000_000;
     return areaInMillions.toFixed(1) + unit;
+  };*/
+
+  const calcpop = (popu) => {
+    const value = Number(popu) || 0;
+    if (value === 0) return "0";
+
+    if (value < 1_000) return value.toLocaleString(); // raw number
+    if (value < 1_000_000)
+      return (value / 1_000).toFixed(1).replace(/\.0$/, "") + "\u00A0K"; // thousands
+
+    return (value / 1_000_000).toFixed(1).replace(/\.0$/, "") + "\u00A0M"; // millions
+  };
+
+  const calcarea = (popu) => {
+    const value = Number(popu) || 0;
+    if (value === 0) return "0";
+
+    const unit = checkcrop() ? "\u00A0ha" : ""; // or "\u00A0Kha" if you want thousands
+
+    if (value < 1_000)
+      return value.toLocaleString() + unit; // 0–999 ha
+
+    if (value < 1_000_000)
+      return (value / 1_000).toFixed(1).replace(/\.0$/, "") + "\u00A0K" + unit;
+
+    return (value / 1_000_000).toFixed(1).replace(/\.0$/, "") + "\u00A0M" + unit;
   };
 
   // Generate canvas for commodity layer

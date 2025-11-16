@@ -225,7 +225,7 @@ function ResponsiveAppBar({ validCountries }) {
             <Box sx={{ display: "flex", flexGrow: 0, flexDirection: "column" }}>
               <Button size="small" href="" color="inherit" key="Acasa" onClick={() => handleNavigation("home")}>
                 <Link to={getHref("home")} style={{ textDecoration: "none", color: "inherit" }}>
-                  <Avatar variant="square" alt="Remy Sharp" src={mode === "dark" ? "Home_imgs/Acasa Logo white1.png" : "Home_imgs/Acasa1.png"} sx={{ width: "auto", height: "60px" }} />
+                  <Avatar variant="square" alt="Remy Sharp" src={"Home_imgs/Sri Lanka Logos/Agri Logo_New copy.png"} sx={{ width: "auto", height: "60px" }} />
                 </Link>
               </Button>
             </Box>
@@ -237,8 +237,20 @@ function ResponsiveAppBar({ validCountries }) {
                 flexDirection: "column",
               }}
             >
-              <ImgButton size="small" href="https://bisa.org/" target="_blank" color="inherit" key="Bisa">
-                <Avatar variant="square" alt="Remy Sharp" src={mode === "dark" ? "./BISA Logo in white color.png" : "./BISA Logo in color.png"} sx={{ width: "auto", height: "50px" }} />
+              <ImgButton size="small" color="inherit" key="Agriplus">
+                <Avatar variant="square" alt="Remy Sharp" src={"Home_imgs/Sri Lanka Logos/Agri Plus-01-2-2.png"} sx={{ width: "auto", height: "50px" }} />
+              </ImgButton>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexGrow: 0,
+                display: { xs: "none", md: "flex" },
+                flexDirection: "column",
+              }}
+            >
+              <ImgButton size="small" color="inherit" key="NRMC">
+                <Avatar variant="square" alt="Remy Sharp" src={"Home_imgs/Sri Lanka Logos/NRMC.png"} sx={{ width: "auto", height: "50px" }} />
               </ImgButton>
             </Box>
             <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>

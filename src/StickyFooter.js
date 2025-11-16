@@ -59,7 +59,7 @@ export default function StickyFooter() {
               margin: 6,
             }}
           >
-            <img src={"acasa-white.svg"} style={logoStyle} alt="logo of acasa" loading="lazy"/>
+            <img src={"acasa-white.svg"} style={logoStyle} alt="logo of acasa" loading="lazy" />
             <Divider textAlign="center" orientation="vertical" flexItem="true" sx={{ bgcolor: "#555555", borderRightWidth: 2, margin: 2 }} />
             <Box sx={{ width: "100%" }}>
               <Typography
@@ -140,6 +140,122 @@ export default function StickyFooter() {
                 Subscribe
               </Button>
             </Stack>
+          </Box>
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <Box sx={{ width: { xs: "100%", sm: "40%" }, margin: 6 }}>
+            <Typography variant="h5" fontWeight={600} gutterBottom sx={{ color: "#ffffff" }}>
+              Contact NRMC
+            </Typography>
+            <Table size="small" aria-label="a dense table" padding="none">
+              <TableBody>
+                <TableRow key="1" sx={{ "& td": { border: 0 } }}>
+                  <TableCell align="left" sx={{ width: "70px" }}>
+                    <Typography variant="subtitle1" sx={{ color: "#ffffff" }}>
+                      Name:
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Typography variant="subtitle1" sx={{ color: "#ffffff", fontWeight: "bold" }} ml={2}>
+                      Dr Pramod Aggarwal
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+                <TableRow key="1" sx={{ "& td": { border: 0 } }}>
+                  <TableCell align="left" sx={{ width: "70px" }}>
+                    <Typography variant="subtitle1" sx={{ color: "#ffffff" }}>
+                      Address:
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Typography variant="subtitle1" sx={{ color: "#ffffff", fontWeight: "bold" }} ml={2}>
+                      Borlaug Institute for South Asia (BISA)
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+                <TableRow key="2" sx={{ "& td": { border: 0 } }}>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left">
+                    <Typography variant="subtitle1" sx={{ color: "#ffffff" }} ml={2}>
+                      International Maize and Wheat Improvement Center
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+                <TableRow key="3" sx={{ "& td": { border: 0 } }}>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left">
+                    <Typography variant="subtitle1" sx={{ color: "#ffffff" }} ml={2}>
+                      CIMMYT, CG Block B, NASC, DPS Marg, Pusa,
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+                <TableRow key="4" sx={{ "& td": { border: 0 } }}>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left">
+                    <Typography variant="subtitle1" sx={{ color: "#ffffff" }} ml={2}>
+                      New Delhi - 110012, India
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+            <Divider
+              sx={{
+                bgcolor: "#252525",
+                borderBottomWidth: 2,
+                marginTop: 2,
+                marginBottom: 2,
+              }}
+            />
+            <Table size="small" aria-label="a dense table" padding="none">
+              <TableBody>
+                <TableRow key="1" sx={{ "& td": { border: 0 } }}>
+                  <TableCell align="left" sx={{ width: "70px" }}>
+                    <Typography variant="subtitle1" sx={{ color: "#ffffff" }}>
+                      Phone:
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Typography variant="subtitle1" sx={{ color: "#ffffff" }} ml={2}>
+                      +91-11-25842940
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+                <TableRow key="2" sx={{ "& td": { border: 0 } }}>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left">
+                    <Typography variant="subtitle1" sx={{ color: "#ffffff" }} ml={2}>
+                      +91-11-2584 2938
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+            <Divider
+              sx={{
+                bgcolor: "#252525",
+                borderBottomWidth: 2,
+                marginTop: 2,
+                marginBottom: 2,
+              }}
+            />
+            <Table size="small" aria-label="a dense table" padding="none">
+              <TableBody>
+                <TableRow key="1" sx={{ "& td": { border: 0 } }}>
+                  <TableCell align="left" sx={{ width: "70px" }}>
+                    <Typography variant="subtitle1" sx={{ color: "#ffffff" }}>
+                      Email:
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Typography variant="subtitle1" sx={{ color: "#fece2f" }} ml={2}>
+                      <Link color="inherit" href="mailto:acasa@cgiar.org">
+                        acasa@cgiar.org
+                      </Link>
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
           </Box>
           <Box sx={{ width: { xs: "100%", sm: "40%" }, margin: 6 }}>
             <Typography variant="h5" fontWeight={600} gutterBottom sx={{ color: "#ffffff" }}>
@@ -256,6 +372,7 @@ export default function StickyFooter() {
               </TableBody>
             </Table>
           </Box>
+          </Box>
         </Box>
         <Divider
           sx={{
@@ -330,7 +447,7 @@ export default function StickyFooter() {
                 sx={{ marginLeft: -5, marginRight: -1 }}
               />
             </ListItemButton>
-            <ListItemButton sx={{ marginRight: -2 }} href="/#/access">
+            {/*<ListItemButton sx={{ marginRight: -2 }} href="/#/access">
               <ListItemIcon sx={{ color: "#fece2f", fontSize: "15px" }}>&#9670;</ListItemIcon>
               <ListItemText
                 primary="Data Access"
@@ -341,7 +458,7 @@ export default function StickyFooter() {
                 }}
                 sx={{ marginLeft: -5, marginRight: -1 }}
               />
-            </ListItemButton>
+            </ListItemButton>*/}
             <ListItemButton sx={{ marginRight: -2 }} href="/#/usecase">
               <ListItemIcon sx={{ color: "#fece2f", fontSize: "15px" }}>&#9670;</ListItemIcon>
               <ListItemText

@@ -15,10 +15,12 @@ function Test() {
     const { country } = useParams();
     const [open, setOpen] = useState(true);
     const [countries, setCountries] = useState([]);
-    const [selectedCountryId, setSelectedCountryId] = useState(0);
+    const [selectedCountryId, setSelectedCountryId] = useState(5); // Sri Lanka
     const [showCountrySelect, setShowCountrySelect] = useState(true);
     const [states, setStates] = useState([]);
     const [selectedStateId, setSelectedStateId] = useState(0);
+    const [districts, setDistricts] = useState([]);
+    const [selectedDistrictId, setSelectedDistrictId] = useState(0);
     const [disabledStateFilter, setDisableStateFilter] = useState(true);
     const [commodityTypes, setCommodityTypes] = useState([]);
     const [selectedCommodityTypeId, setSelectedCommodityTypeId] = useState(1); // Default to Crops
@@ -135,22 +137,24 @@ function Test() {
                     throw new Error("No valid GeoJSON data returned for country/state");
                 }
                 newGeojsonData.country = geojsonData.data;
-                // Fetch district GeoJSON only when admin_level is "country"
-                if (admin_level === "country" && admin_level_id) {
-                    const districtRes = await fetch(`${apiUrl}/layers/geojson/districts_c`, {
+                if (admin_level === "state" && admin_level_id) {
+                    const districtRes = await fetch(`${apiUrl}/layers/geojson/districts_s`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                            admin_level: "country",
+                            admin_level: "state",
                             admin_level_id,
                         }),
                     });
+
                     if (!districtRes.ok) throw new Error(`District GeoJSON error! Status: ${districtRes.status}`);
                     const districtData = await districtRes.json();
+
                     if (districtData.success && districtData.data) {
                         newGeojsonData.district = districtData.data;
                     }
                 }
+
                 setGeojsonData(newGeojsonData);
             } catch (err) {
                 console.error("Error fetching GeoJSON:", err);
@@ -204,44 +208,18 @@ function Test() {
     }, [selectedScopeId]);
     useEffect(() => {
         if (countries.length > 0) {
-            let countryId = 0;
-            let admin_level = "total";
-            let admin_level_id = null;
-            let showSelect = true;
-            if (country) {
-                const countryName = country.toLowerCase().replace(/[-_]/g, " ");
-                const matchedCountry = countries.find(
-                    (c) =>
-                        c.country.toLowerCase().replace(/\s+/g, "") ===
-                        countryName.replace(/\s+/g, "") && c.status
-                );
-                if (matchedCountry) {
-                    countryId = matchedCountry.country_id;
-                    admin_level = "country";
-                    admin_level_id = matchedCountry.country_id;
-                    setSelectedCountryId(countryId);
-                    getStates(countryId);
-                    setDisableStateFilter(false);
-                    showSelect = false;
-                } else {
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Invalid Country",
-                        text: `Country "${country}" not found or inactive. Defaulting to South Asia.`,
-                    });
-                    setSelectedCountryId(0);
-                    setDisableStateFilter(true);
-                    setStates([]);
-                    showSelect = true;
-                }
-            } else {
-                setSelectedCountryId(0);
+            const sriLanka = countries.find(c => c.country_id === 5);
+
+            if (sriLanka) {
+                setSelectedCountryId(5);
+                getStates(5);
                 setDisableStateFilter(false);
+                setShowCountrySelect(false);
+                fetchGeojson("country", 5);
             }
-            setShowCountrySelect(showSelect);
-            fetchGeojson(admin_level, admin_level_id);
         }
-    }, [countries, country, fetchGeojson]);
+    }, [countries]);
+
     useEffect(() => {
         if (commodityTypes.length > 0 && !selectedCommodityTypeId) {
             setSelectedCommodityTypeId(commodityTypes[0].commodity_type_id);
@@ -355,8 +333,17 @@ function Test() {
             layer_type = "adaptation";
             adaptation_id = selectedAdaptationId;
         }
-        const admin_level = selectedStateId !== 0 ? "state" : selectedCountryId !== 0 ? "country" : "total";
-        const admin_level_id = selectedStateId !== 0 ? selectedStateId : selectedCountryId !== 0 ? selectedCountryId : null;
+        const admin_level =
+            selectedDistrictId !== 0 ? "district" :
+                selectedStateId !== 0 ? "state" :
+                    "country";
+
+        const admin_level_id =
+            selectedDistrictId !== 0 ? selectedDistrictId :
+                selectedStateId !== 0 ? selectedStateId :
+                    selectedCountryId;
+
+
         let sub_layer_name = '';
         if (risk_id) {
             const selectedRisk = risks.find(r => r.risk_id === risk_id);
@@ -471,28 +458,33 @@ function Test() {
             setIsLoading(false);
         }
     };
-    const handleCountryChange = (event) => {
-        const countryId = event.target.value;
-        setSelectedCountryId(countryId);
-        setSelectedStateId(0);
-        if (countryId !== 0) {
-            getStates(countryId);
-            setDisableStateFilter(false);
-            fetchGeojson("country", countryId);
-        } else {
-            setStates([]);
-            setDisableStateFilter(true);
-            fetchGeojson("total", null);
+    const fetchDistricts = async (stateId) => {
+        try {
+            const response = await fetch(`${apiUrl}/lkp/locations/districts?country_id=5&state_id=${stateId}`);
+            const { success, data } = await response.json();
+            return success ? data : [];
+        } catch (err) {
+            console.error(err);
+            return [];
         }
     };
-    const handleStateChange = (event) => {
-        const stateId = event.target.value;
+
+    const handleCountryChange = () => { };
+
+    const handleStateChange = async (e) => {
+        const stateId = e.target.value;
         setSelectedStateId(stateId);
+
         if (stateId !== 0) {
-            fetchGeojson("state", stateId);
+            const res = await fetchDistricts(stateId); 
+            setDistricts(res);
         } else {
-            fetchGeojson("country", selectedCountryId);
+            setDistricts([]);
+            setSelectedDistrictId(0);
         }
+    };
+    const handleDistrictChange = (e) => {
+        setSelectedDistrictId(e.target.value);
     };
     const handleCommodityTypeChange = (event) => {
         const newCommodityTypeId = event.target.value;
@@ -671,78 +663,6 @@ function Test() {
                                             <div className="card w-100 bg-transparent border-0 text-start">
                                                 <div className="card-body">
                                                     <FormControl style={{ textAlign: "left" }}>
-                                                        {showCountrySelect ? (
-                                                            <>
-                                                                <Select
-                                                                    disableUnderline
-                                                                    variant="standard"
-                                                                    value={selectedCountryId}
-                                                                    onChange={handleCountryChange}
-                                                                    displayEmpty
-                                                                    inputProps={{ "aria-label": "Country" }}
-                                                                    IconComponent={ArrowDropDownIcon}
-                                                                    MenuProps={{
-                                                                        disableScrollLock: true,
-                                                                        PaperProps: { sx: { maxHeight: 300 } },
-                                                                        PopperProps: { modifiers: [{ name: "flip", enabled: false }] },
-                                                                    }}
-                                                                    sx={(theme) => ({
-                                                                        fontSize: "13px",
-                                                                        height: "26px",
-                                                                        backgroundColor:
-                                                                            theme.palette.mode === "dark"
-                                                                                ? "rgba(60, 75, 60, 1)"
-                                                                                : "rgba(235, 247, 233, 1)",
-                                                                        overflow: "hidden",
-                                                                        textOverflow: "ellipsis",
-                                                                        whiteSpace: "nowrap",
-                                                                        margin: "10px 20px",
-                                                                        textAlign: "left",
-                                                                        padding: "15px 0 15px 15px",
-                                                                        width: "220px"
-                                                                    })}
-                                                                    disabled={isLoading || mapLoading}
-                                                                >
-                                                                    <MenuItem
-                                                                        value={0}
-                                                                        sx={{ fontSize: "13px", paddingY: "2px" }}
-                                                                    >
-                                                                        South Asia
-                                                                    </MenuItem>
-                                                                    {countries.map((a) => (
-                                                                        <MenuItem
-                                                                            key={a.country_id}
-                                                                            value={a.country_id}
-                                                                            disabled={!a.status}
-                                                                            sx={{
-                                                                                fontSize: "13px",
-                                                                                paddingY: "2px",
-                                                                                overflow: "hidden",
-                                                                                textOverflow: "ellipsis",
-                                                                                whiteSpace: "nowrap",
-                                                                            }}
-                                                                        >
-                                                                            <Box display="flex" alignItems="center" gap={0.5}>
-                                                                                <span>{a.country}</span>
-                                                                                {a.description && (
-                                                                                    <Tooltip title={a.description} arrow>
-                                                                                        <InfoIcon fontSize="small" sx={{ color: "rgba(0, 0, 0, 0.54)" }} />
-                                                                                    </Tooltip>
-                                                                                )}
-                                                                            </Box>
-                                                                        </MenuItem>
-                                                                    ))}
-                                                                </Select>
-                                                            </>
-                                                        ) : (
-                                                            <Typography variant="subtitle2" sx={{ mb: 1 }} style={{ textAlign: "center" }}>
-                                                                <FormLabel style={{ textAlign: "center" }} className="formLabel">
-                                                                    Country:{" "}
-                                                                    {countries.find((c) => c.country_id === selectedCountryId)?.country ||
-                                                                        "South Asia"}
-                                                                </FormLabel>
-                                                            </Typography>
-                                                        )}
                                                         <Select
                                                             disableUnderline
                                                             variant="standard"
@@ -802,6 +722,49 @@ function Test() {
                                                                 </MenuItem>
                                                             ))}
                                                         </Select>
+                                                        <Select
+                                                            disableUnderline
+                                                            variant="standard"
+                                                            value={selectedDistrictId}
+                                                            onChange={handleDistrictChange}
+                                                            displayEmpty
+                                                            inputProps={{ "aria-label": "District" }}
+                                                            IconComponent={ArrowDropDownIcon}
+                                                            MenuProps={{
+                                                                disableScrollLock: true,
+                                                                PaperProps: { sx: { maxHeight: 300 } },
+                                                            }}
+                                                            sx={(theme) => ({
+                                                                fontSize: "13px",
+                                                                height: "26px",
+                                                                backgroundColor:
+                                                                    theme.palette.mode === "dark"
+                                                                        ? "rgba(60, 75, 60, 1)"
+                                                                        : "rgba(235, 247, 233, 1)",
+                                                                overflow: "hidden",
+                                                                textOverflow: "ellipsis",
+                                                                whiteSpace: "nowrap",
+                                                                margin: "0 20px 10px",
+                                                                textAlign: "left",
+                                                                padding: "15px 0 15px 15px",
+                                                                width: "220px"
+                                                            })}
+                                                        >
+                                                            <MenuItem value={0} sx={{ fontSize: "13px", paddingY: "2px" }}>
+                                                                District
+                                                            </MenuItem>
+
+                                                            {districts.map((d) => (
+                                                                <MenuItem
+                                                                    key={d.district_id}
+                                                                    value={d.district_id}
+                                                                    sx={{ fontSize: "13px", paddingY: "2px" }}
+                                                                >
+                                                                    {d.district}
+                                                                </MenuItem>
+                                                            ))}
+                                                        </Select>
+
                                                     </FormControl>
                                                 </div>
                                             </div>

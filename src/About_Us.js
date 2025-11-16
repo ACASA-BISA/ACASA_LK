@@ -292,257 +292,6 @@ export default function AboutUs() {
             >
               ACASA Development Partners
             </Typography>
-            {/*<Typography
-              variant="h5"
-              sx={(theme) => ({
-                color: theme.palette.mode === "dark" ? "#c4c4c4" : "#111111",
-                fontWeight: "bold",
-                fontFamily: "revert",
-                marginTop: 2,
-                marginBottom: 2,
-              })}
-            >
-              Supported By
-            </Typography>
-            <Link href="https://www.gatesfoundation.org/" underline="none" target="_blank">
-              <Paper
-                sx={(theme) => ({
-                  "m": 1,
-                  "ml": 0,
-                  "width": "21vw",
-                  "height": 200,
-                  "transition": "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                  "&:hover": {
-                    boxShadow: theme.palette.mode === "dark" ? "0 4px 15px 0 rgba(255, 255, 255, 0.08)" : "0 4px 20px 0 rgba(0,0,0,0.12)",
-                    transform: "scale(1.04)",
-                  },
-                })}
-                elevation={0}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    textAlign: { sm: "center", md: "center" },
-                  }}
-                >
-                  <img src={"bmgf-new.svg"} style={logoStyle2} alt="risk" />
-                  <Typography
-                    sx={(theme) => ({
-                      color: theme.palette.mode === "dark" ? "#e0e0e0" : "#333333",
-                      fontSize: "16px",
-                      fontFamily: "revert",
-                      margin: 2,
-                      marginRight: 3,
-                    })}
-                  >
-                    Bill & Melinda Gates Foundation
-                  </Typography>
-                </Box>
-              </Paper>
-            </Link> */}
-
-            {/* <Typography
-              variant="h5"
-              sx={(theme) => ({
-                color: theme.palette.mode === "dark" ? "#c4c4c4" : "#111111",
-                fontWeight: "bold",
-                fontFamily: "revert",
-                marginTop: 2,
-                marginBottom: 2,
-              })}
-            >
-              Partners in South Asia
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                width: { xs: "100%", sm: "100%" },
-              }}
-              gap="1vw"
-            >
-              <Link href="https://barc.gov.bd/" underline="none" target="_blank">
-                <Paper
-                  sx={(theme) => ({
-                    m: 1,
-                    ml: 0,
-                    width: "21vw",
-                    height: 200,
-                    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                    "&:hover": {
-                      boxShadow: theme.palette.mode === "dark" ? "0 4px 15px 0 rgba(255, 255, 255, 0.08)" : "0 4px 20px 0 rgba(0,0,0,0.12)",
-                      transform: "scale(1.04)",
-                    },
-                  })}
-                  elevation={0}
-                >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      textAlign: { sm: "center", md: "center" },
-                    }}
-                  >
-                    <img src={"south-asia-1.png"} style={logoStyle3} alt="risk" />
-                    <Typography
-                      sx={(theme) => ({
-                        color: theme.palette.mode === "dark" ? "#e0e0e0" : "#333333",
-                        fontSize: "16px",
-                        fontFamily: "revert",
-                        margin: 2,
-                        marginRight: 3,
-                        marginLeft: 3,
-                      })}
-                    >
-                      Bangladesh Agriculture Research Council (BARC)
-                    </Typography>
-                  </Box>
-                </Paper>
-              </Link>
-              <Link href="https://icar.org.in/" underline="none" target="_blank">
-                <Paper
-                  sx={(theme) => ({
-                    m: 1,
-                    ml: 0,
-                    width: "21vw",
-                    height: 200,
-                    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                    "&:hover": {
-                      boxShadow: theme.palette.mode === "dark" ? "0 4px 15px 0 rgba(255, 255, 255, 0.08)" : "0 4px 20px 0 rgba(0,0,0,0.12)",
-                      transform: "scale(1.04)",
-                    },
-                  })}
-                  elevation={0}
-                >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      textAlign: { sm: "center", md: "center" },
-                    }}
-                  >
-                    <img src={"south-asia-6.svg"} style={logoStyle3} alt="risk" />
-                    <Typography
-                      sx={(theme) => ({
-                        color: theme.palette.mode === "dark" ? "#e0e0e0" : "#333333",
-                        fontSize: "16px",
-                        fontFamily: "revert",
-                        margin: 2,
-                        marginRight: 3,
-                        marginLeft: 3,
-                      })}
-                    >
-                      Indian Council of Agricultural Research (ICAR)
-                    </Typography>
-                  </Box>
-                </Paper>
-              </Link>
-              <Link href="https://narc.gov.np/" underline="none" target="_blank">
-                <Paper
-                  sx={(theme) => ({
-                    m: 1,
-                    ml: 0,
-                    width: "21vw",
-                    height: 200,
-                    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                    "&:hover": {
-                      boxShadow: theme.palette.mode === "dark" ? "0 4px 15px 0 rgba(255, 255, 255, 0.08)" : "0 4px 20px 0 rgba(0,0,0,0.12)",
-                      transform: "scale(1.04)",
-                    },
-                  })}
-                  elevation={0}
-                >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      textAlign: { sm: "center", md: "center" },
-                    }}
-                  >
-                    <img src={"south-asia-7.svg"} style={logoStyle3} alt="risk" />
-                    <Typography
-                      sx={(theme) => ({
-                        color: theme.palette.mode === "dark" ? "#e0e0e0" : "#333333",
-                        fontSize: "16px",
-                        fontFamily: "revert",
-                        margin: 2,
-                        marginRight: 3,
-                        marginLeft: 3,
-                      })}
-                    >
-                      Nepal Agricultural Research Council (NARC)
-                    </Typography>
-                  </Box>
-                </Paper>
-              </Link>
-              <Link href="https://doa.gov.lk/NRMC/" underline="none" target="_blank">
-                <Paper
-                  sx={(theme) => ({
-                    m: 1,
-                    ml: 0,
-                    width: "21vw",
-                    height: 200,
-                    transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
-                    "&:hover": {
-                      boxShadow: theme.palette.mode === "dark" ? "0 4px 15px 0 rgba(255, 255, 255, 0.08)" : "0 4px 20px 0 rgba(0,0,0,0.12)",
-                      transform: "scale(1.04)",
-                    },
-                  })}
-                  elevation={0}
-                >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      textAlign: { sm: "center", md: "center" },
-                    }}
-                  >
-                    <img src={"south-asia-4.svg"} style={logoStyle3} alt="risk" />
-                    <Typography
-                      sx={(theme) => ({
-                        color: theme.palette.mode === "dark" ? "#e0e0e0" : "#333333",
-                        fontSize: "16px",
-                        fontFamily: "revert",
-                        margin: 2,
-                        marginRight: 3,
-                        marginLeft: 3,
-                      })}
-                    >
-                      Natural Resources Management Center (NRMC), Sri Lanka
-                    </Typography>
-                  </Box>
-                </Paper>
-              </Link>
-            </Box>
-            <Box>
-              <Typography
-                variant="h5"
-                sx={(theme) => ({
-                  color: theme.palette.mode === "dark" ? "#c4c4c4" : "#111111",
-                  fontWeight: "bold",
-                  fontFamily: "revert",
-                  marginTop: 2,
-                  marginBottom: 2,
-                })}
-              >
-                Other Partners & Contributors
-              </Typography>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  width: { xs: "100%", sm: "100%" },
-                }}
-                gap="1vw"
-              >
-                <PartnersContributors country="bangladesh" />
-                <PartnersContributors country="india" />
-                <PartnersContributors country="nepal" />
-                <PartnersContributors country="sriLanka" />
-              </Box>
-            </Box>
-            */}
             <Typography
               variant="h5"
               sx={(theme) => ({
@@ -553,7 +302,7 @@ export default function AboutUs() {
                 marginBottom: 2,
               })}
             >
-              Partners and Contributors in South Asia
+              Partners and Contributors in Sri Lanka
             </Typography>
 
             <Box
@@ -564,8 +313,8 @@ export default function AboutUs() {
               }}
             >
               {/* Row 1 */}
+              {/*
               <Box sx={{ display: "flex", flexDirection: "column", gap: "1vw" }}>
-                {/* South Asia Partner */}
                 <Link href="https://barc.gov.bd/" underline="none" target="_blank">
                   <Paper
                     sx={(theme) => ({
@@ -599,12 +348,11 @@ export default function AboutUs() {
                   </Paper>
                 </Link>
 
-                {/* Other Contributor */}
                 <PartnersContributors country="bangladesh" />
-              </Box>
+              </Box>*/}
 
               {/* Row 2 */}
-              <Box sx={{ display: "flex", flexDirection: "column", gap: "1vw" }}>
+              {/*<Box sx={{ display: "flex", flexDirection: "column", gap: "1vw" }}>
                 <Link href="https://icar.org.in/" underline="none" target="_blank">
                   <Paper
                     sx={(theme) => ({
@@ -639,10 +387,10 @@ export default function AboutUs() {
                 </Link>
 
                 <PartnersContributors country="india" />
-              </Box>
+              </Box>*/}
 
               {/* Row 3 */}
-              <Box sx={{ display: "flex", flexDirection: "column", gap: "1vw" }}>
+              {/*<Box sx={{ display: "flex", flexDirection: "column", gap: "1vw" }}>
                 <Link href="https://narc.gov.np/" underline="none" target="_blank">
                   <Paper
                     sx={(theme) => ({
@@ -677,7 +425,7 @@ export default function AboutUs() {
                 </Link>
 
                 <PartnersContributors country="nepal" />
-              </Box>
+              </Box>*/}
 
               {/* Row 4 */}
               <Box sx={{ display: "flex", flexDirection: "column", gap: "1vw" }}>

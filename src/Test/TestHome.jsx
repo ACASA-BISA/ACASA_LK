@@ -91,74 +91,64 @@ const resources = [
 
 var items = [
     {
-        video: "./Home_imgs/Nepal CG.jpg",
-        videothumb: "./Home_imgs/Nepal CG.jpg",
+        video: "./Home_imgs/Sri Lanka/2264406732_3cecc0db1d_o.jpg",
+        videothumb: "./Home_imgs/Sri Lanka/2264406732_3cecc0db1d_o.jpg",
         id: 1,
     },
     {
-        video: "./vid31.mp4",
-        videothumb: "./thumb31.jpg",
+        video: "./Home_imgs/Sri Lanka/BUDD 051.jpg",
+        videothumb: "./Home_imgs/Sri Lanka/BUDD 051.jpg",
         id: 2,
     },
     {
-        video: "./Home_imgs/India.jpg",
-        videothumb: "./Home_imgs/India.jpg",
+        video: "./Home_imgs/Sri Lanka/BUDD 074.jpg",
+        videothumb: "./Home_imgs/Sri Lanka/BUDD 074.jpg",
         id: 3,
     },
     {
-        video: "./vid5.mp4",
-        videothumb: "./thumb5.jpg",
+        video: "./Home_imgs/Sri Lanka/DSC_0011.jpg",
+        videothumb: "./Home_imgs/Sri Lanka/DSC_0011.jpg",
         id: 4,
     },
     {
-        video: "./Home_imgs/IMG_3188.jpg",
-        videothumb: "./Home_imgs/IMG_3188.jpg",
+        video: "./Home_imgs/Sri Lanka/DSC_0028.jpg",
+        videothumb: "./Home_imgs/Sri Lanka/DSC_0028.jpg",
         id: 5,
     },
     {
-        video: "./vid41.mp4",
-        videothumb: "./thumb41.jpg",
+        video: "./Home_imgs/Sri Lanka/DSC_0064.jpg",
+        videothumb: "./Home_imgs/Sri Lanka/DSC_0064.jpg",
         id: 6,
     },
     {
-        video: "./Home_imgs/CIMMYT (7).jpg",
-        videothumb: "./Home_imgs/CIMMYT (7).jpg",
+        video: "./Home_imgs/Sri Lanka/Farmer and lady.jpg",
+        videothumb: "./Home_imgs/Sri Lanka/Farmer and lady.jpg",
         id: 7,
     },
     {
-        video: "./Home_imgs/43425798842_884ba83b08_o.jpg",
-        videothumb: "./Home_imgs/43425798842_884ba83b08_o.jpg",
+        video: "./Home_imgs/Sri Lanka/IMG_3379.jpg",
+        videothumb: "./Home_imgs/Sri Lanka/IMG_3379.jpg",
         id: 8,
     },
     {
-        video: "./Home_imgs/CGIAR (1).jpg",
-        videothumb: "./Home_imgs/CGIAR (1).jpg",
+        video: "./Home_imgs/Sri Lanka/IMG_3391.jpg",
+        videothumb: "./Home_imgs/Sri Lanka/IMG_3391.jpg",
         id: 9,
     },
     {
-        video: "./Home_imgs/CIMMYT (8).jpg",
-        videothumb: "./Home_imgs/CIMMYT (8).jpg",
+        video: "./Home_imgs/Sri Lanka/pexels-dinukagunawardana-17903073.jpg",
+        videothumb: "./Home_imgs/Sri Lanka/pexels-dinukagunawardana-17903073.jpg",
         id: 10,
     },
     {
-        video: "./Home_imgs/CIMMYT (3).jpg",
-        videothumb: "./Home_imgs/CIMMYT (3).jpg",
+        video: "./Home_imgs/Sri Lanka/pexels-ramesh-nimsara-kariyawasam-623579687-17396316.jpg",
+        videothumb: "./Home_imgs/Sri Lanka/pexels-ramesh-nimsara-kariyawasam-623579687-17396316.jpg",
         id: 11,
     },
     {
-        video: "./Home_imgs/28474558493_9ac0292ca6_o.jpg",
-        videothumb: "./Home_imgs/28474558493_9ac0292ca6_o.jpg",
+        video: "./Home_imgs/Sri Lanka/Sri Lanka.jpg",
+        videothumb: "./Home_imgs/Sri Lanka/Sri Lanka.jpg",
         id: 12,
-    },
-    {
-        video: "./Home_imgs/CGIAR (2).jpg",
-        videothumb: "./Home_imgs/CGIAR (2).jpg",
-        id: 13,
-    },
-    {
-        video: "./Home_imgs/CGIAR (3).jpg",
-        videothumb: "./Home_imgs/CGIAR (3).jpg",
-        id: 14,
     },
 ];
 
@@ -545,8 +535,8 @@ function TestHome(props) {
         arrows: false,
     };
 
-    const partnerLogos = country === "nepal" ? [2] : [1, 7, 2, 3, 4, 5, 6, 8, 9];
-    const contryLogos = [1, 2, 3, 4, 5, 6, 7, 8];
+    const partnerLogos = [3];
+    const contryLogos = [8];
 
     const { mode } = useContext(ThemeContext);
 
@@ -1054,7 +1044,7 @@ function TestHome(props) {
                             lineHeight: 1.6,
                         }}
                     >
-                        Our interactive maps are designed to support government agencies, insurance providers, researchers, and service providers in aligned disciplines, agri-food industries, international and national donors, and organizations focused on climate adaptation. They can visualize climate-related risks and adaptation options at a high resolution, down to the sub-district level. Built on climate, crop, livestock, socioeconomic data, and adaptation options, our maps enable users to plan effectively and adapt quickly.
+                        Our interactive maps are designed to support government agencies, insurance providers, researchers, and service providers in aligned disciplines, agri-food industries, international and national donors, and organizations focused on climate adaptation. They can visualize climate-related risks and adaptation options at a high resolution, down to the sub-provincial level. Built on climate, crop, livestock, socioeconomic data, and adaptation options, our maps enable users to plan effectively and adapt quickly.
                     </Typography>
                 </Box>
             </Container>
@@ -1063,7 +1053,7 @@ function TestHome(props) {
                 <Box sx={{ mt: 4, mb: 4 }}>
                     <Grid container spacing={2}>
                         {[
-                            { emoji: "🔍", text: "Zoom in to view risks at the local / sub-district scale.", },
+                            { emoji: "🔍", text: "Zoom in to view risks at the local / sub-provincial scale.", },
                             { emoji: "🌾", text: "Visualise climate hazards", },
                             { emoji: "🧑‍🌾", text: "Identify vulnerable regions for key crops and livestock", },
                             { emoji: "🛠", text: "Discover locally relevant adaptation options" },
@@ -1116,7 +1106,7 @@ function TestHome(props) {
                     <Container maxWidth="lg">
                         <img
                             className="w-100"
-                            src="ACASA_approach-new-cropped.svg"
+                            src="ACASA_Approach_SL.svg"
                             style={{
                                 filter: theme.palette.mode === "dark" ? "invert(93%) sepia(5%) saturate(166%) hue-rotate(180deg) brightness(100%) contrast(85%)" : "none",
                             }}
