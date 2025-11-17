@@ -426,6 +426,7 @@ function Test() {
         selectedScenarioId,
         selectedCountryId,
         selectedStateId,
+        selectedDistrictId,
         selectedCommodityTypeId,
         selectedCommodityId,
         selectedRiskId,
@@ -476,16 +477,28 @@ function Test() {
         setSelectedStateId(stateId);
 
         if (stateId !== 0) {
-            const res = await fetchDistricts(stateId); 
+            // fetch the district list for UI
+            const res = await fetchDistricts(stateId);
             setDistricts(res);
+
+            // use the local stateId variable to avoid stale state issues
+            fetchGeojson("state", stateId);
         } else {
             setDistricts([]);
             setSelectedDistrictId(0);
+
+            // If user cleared state, restore country-level geojson
+            fetchGeojson("country", selectedCountryId);
         }
     };
+
     const handleDistrictChange = (e) => {
-        setSelectedDistrictId(e.target.value);
+        const districtId = e.target.value;
+        setSelectedDistrictId(districtId);
+
+        fetchGeojson('district', districtId);
     };
+
     const handleCommodityTypeChange = (event) => {
         const newCommodityTypeId = event.target.value;
         setSelectedCommodityTypeId(newCommodityTypeId);
@@ -659,6 +672,18 @@ function Test() {
                                         {isSidebarOpen.region ? <ExpandLess /> : <ExpandMore />}
                                     </ListItemButton>
                                     <Collapse in={isSidebarOpen.region} timeout="auto" unmountOnExit>
+                                        <Typography
+                                            sx={{
+                                                textAlign: "center",
+                                                fontSize: "12px",
+                                                marginBottom: "10px",
+                                                color: "rgba(0, 0, 0, 0.54)",
+                                                fontWeight: "bold"
+                                            }}
+                                        >
+                                            Country: Sri Lanka
+                                        </Typography>
+
                                         <List component="div" disablePadding>
                                             <div className="card w-100 bg-transparent border-0 text-start">
                                                 <div className="card-body">
