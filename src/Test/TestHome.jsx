@@ -28,7 +28,6 @@ import SleekTooltip from "../SleekTooltip";
 import { ThemeContext } from "../ThemeContext";
 import LoadingPage from "../LoadingPage"; // Import the LoadingPage component
 import GppMaybeIcon from "@mui/icons-material/GppMaybe";
-
 const logoStyle3 = {
     width: "77vw",
     minHeight: "90vh",
@@ -48,7 +47,6 @@ const thumbstyle = {
 const logoStyle6 = { height: "88%", margin: "auto" };
 const logoStyle8 = { height: "55%", margin: "auto" };
 const logoStyle7 = { width: "90%", margin: "auto" };
-
 const paperHoverStyle = {
     "m": 1,
     "width": "220px",
@@ -61,103 +59,98 @@ const paperHoverStyle = {
         cursor: "pointer",
     },
 };
-
 /* Increase the resilience of small-scale producers to climate variability and change
 Increase the quality, availability, and utility of data and evidence
 Improve climate adaptive capacity of agricultural systems
 */
-
 // 🔹 Your resources with dynamic images
 const resources = [
     {
         title: "Maize, Agribusiness",
         description:
             "Building Capabilities of Medium and Large-Scale Sri Lankan Maize Growers in Agricultural Risk Management",
-        image: "./Blog-10.jpg", // place inside public/images/
+        image: `${process.env.PUBLIC_URL}/Blog-10.jpg`, // place inside public/images/
     },
     {
         title: "Capacity building, women",
         description:
             "ACASA for empowering women-led social entrepreneurs in Nepal: Building climate-resilient forage for a sustainable livestock ecosystem",
-        image: "./Blog-11.jpg",
+        image: `${process.env.PUBLIC_URL}/Blog-11.jpg`,
     },
     {
         title: "Adaptation, local-level planning",
         description:
             "Strengthening the model of “Adaptation Clinic” through data-driven local level adaptation planning in Bangladesh",
-        image: "./Blog-13.jpg",
+        image: `${process.env.PUBLIC_URL}/Blog-13.jpg`,
     },
 ];
-
 var items = [
     {
-        video: "./Home_imgs/Sri Lanka/2264406732_3cecc0db1d_o.jpg",
-        videothumb: "./Home_imgs/Sri Lanka/2264406732_3cecc0db1d_o.jpg",
+        video: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/2264406732_3cecc0db1d_o.jpg`,
+        videothumb: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/2264406732_3cecc0db1d_o.jpg`,
         id: 1,
     },
     {
-        video: "./Home_imgs/Sri Lanka/BUDD 051.jpg",
-        videothumb: "./Home_imgs/Sri Lanka/BUDD 051.jpg",
+        video: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/BUDD 051.jpg`,
+        videothumb: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/BUDD 051.jpg`,
         id: 2,
     },
     {
-        video: "./Home_imgs/Sri Lanka/BUDD 074.jpg",
-        videothumb: "./Home_imgs/Sri Lanka/BUDD 074.jpg",
+        video: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/BUDD 074.jpg`,
+        videothumb: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/BUDD 074.jpg`,
         id: 3,
     },
     {
-        video: "./Home_imgs/Sri Lanka/DSC_0011.jpg",
-        videothumb: "./Home_imgs/Sri Lanka/DSC_0011.jpg",
+        video: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/DSC_0011.jpg`,
+        videothumb: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/DSC_0011.jpg`,
         id: 4,
     },
     {
-        video: "./Home_imgs/Sri Lanka/DSC_0028.jpg",
-        videothumb: "./Home_imgs/Sri Lanka/DSC_0028.jpg",
+        video: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/DSC_0028.jpg`,
+        videothumb: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/DSC_0028.jpg`,
         id: 5,
     },
     {
-        video: "./Home_imgs/Sri Lanka/DSC_0064.jpg",
-        videothumb: "./Home_imgs/Sri Lanka/DSC_0064.jpg",
+        video: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/DSC_0064.jpg`,
+        videothumb: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/DSC_0064.jpg`,
         id: 6,
     },
     {
-        video: "./Home_imgs/Sri Lanka/Farmer and lady.jpg",
-        videothumb: "./Home_imgs/Sri Lanka/Farmer and lady.jpg",
+        video: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/Farmer and lady.jpg`,
+        videothumb: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/Farmer and lady.jpg`,
         id: 7,
     },
     {
-        video: "./Home_imgs/Sri Lanka/IMG_3379.jpg",
-        videothumb: "./Home_imgs/Sri Lanka/IMG_3379.jpg",
+        video: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/IMG_3379.jpg`,
+        videothumb: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/IMG_3379.jpg`,
         id: 8,
     },
     {
-        video: "./Home_imgs/Sri Lanka/IMG_3391.jpg",
-        videothumb: "./Home_imgs/Sri Lanka/IMG_3391.jpg",
+        video: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/IMG_3391.jpg`,
+        videothumb: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/IMG_3391.jpg`,
         id: 9,
     },
     {
-        video: "./Home_imgs/Sri Lanka/pexels-dinukagunawardana-17903073.jpg",
-        videothumb: "./Home_imgs/Sri Lanka/pexels-dinukagunawardana-17903073.jpg",
+        video: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/pexels-dinukagunawardana-17903073.jpg`,
+        videothumb: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/pexels-dinukagunawardana-17903073.jpg`,
         id: 10,
     },
     {
-        video: "./Home_imgs/Sri Lanka/pexels-ramesh-nimsara-kariyawasam-623579687-17396316.jpg",
-        videothumb: "./Home_imgs/Sri Lanka/pexels-ramesh-nimsara-kariyawasam-623579687-17396316.jpg",
+        video: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/pexels-ramesh-nimsara-kariyawasam-623579687-17396316.jpg`,
+        videothumb: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/pexels-ramesh-nimsara-kariyawasam-623579687-17396316.jpg`,
         id: 11,
     },
     {
-        video: "./Home_imgs/Sri Lanka/Sri Lanka.jpg",
-        videothumb: "./Home_imgs/Sri Lanka/Sri Lanka.jpg",
+        video: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/Sri Lanka.jpg`,
+        videothumb: `${process.env.PUBLIC_URL}/Home_imgs/Sri Lanka/Sri Lanka.jpg`,
         id: 12,
     },
 ];
-
 // const types = [
-//     "Enhance adaptive capacity of agricultural systems through granular climate risk assessment and targeted adaptation options.",
-//     "Strengthen the quality, accessibility, and usability of data and evidence to support climate-informed decision-making in agriculture.",
-//     "Build resilience of small-scale producers to climate variability and change through data-driven climate adaptation options.",
+// "Enhance adaptive capacity of agricultural systems through granular climate risk assessment and targeted adaptation options.",
+// "Strengthen the quality, accessibility, and usability of data and evidence to support climate-informed decision-making in agriculture.",
+// "Build resilience of small-scale producers to climate variability and change through data-driven climate adaptation options.",
 // ];
-
 const ImageOverlay = styled("span")(({ theme }) => ({
     position: "absolute",
     left: 0,
@@ -169,56 +162,53 @@ const ImageOverlay = styled("span")(({ theme }) => ({
     justifyContent: "flex-start",
     color: theme.palette.common.white,
 }));
-
 const slides = [
     {
-        image: "/images/banner.png",
+        image: `${process.env.PUBLIC_URL}/images/banner.png`,
         title: "Atlas of Climate Adaptation in South Asian Agriculture",
         link: "/services",
         buttonText: "Explore the Atlas",
         secondaryLink: "/contact",
     },
     {
-        image: "/images/banner.png",
+        image: `${process.env.PUBLIC_URL}/images/banner.png`,
         title: "Atlas of Climate Adaptation in South Asian Agriculture",
         link: "/monitoring",
         buttonText: "Explore the Atlas",
         secondaryLink: "/support",
     },
     {
-        image: "/images/banner.png",
+        image: `${process.env.PUBLIC_URL}/images/banner.png`,
         title: "Atlas of Climate Adaptation in South Asian Agriculture",
         link: "/ai-solutions",
         buttonText: "Explore the Atlas",
         secondaryLink: "/learn",
     },
 ];
-
 const rightCards = [
     {
         title: "Real-time Analytics",
         description:
             "Strengthen the quality, accessibility, and usability of data and evidence to support climate-informed decision-making in agriculture.",
-        image: "/images/v1.png",
+        image: `${process.env.PUBLIC_URL}/images/v1.png`,
     },
     {
         title: "Smart Irrigation",
         description:
             "Enhance adaptive capacity of agricultural systems through granular climate risk assessment and targeted adaptation options.",
-        image: "/images/v2.png",
+        image: `${process.env.PUBLIC_URL}/images/v2.png`,
     },
     {
         title: "Weather Forecast",
         description:
             "Build resilience of small-scale producers to climate variability and change through data-driven climate adaptation options.",
-        image: "/images/v3.png",
+        image: `${process.env.PUBLIC_URL}/images/v3.png`,
     },
 ];
-
 const useCases = [
     {
         title: "Government",
-        image: "/images/govt.png",
+        image: `${process.env.PUBLIC_URL}/images/govt.png`,
         content: (
             <>
                 <Typography component="p">
@@ -255,7 +245,7 @@ const useCases = [
     },
     {
         title: "Research",
-        image: "/images/research1.jpg",
+        image: `${process.env.PUBLIC_URL}/images/research1.jpg`,
         content: (
             <>
                 <Typography component="p">
@@ -286,7 +276,7 @@ const useCases = [
     },
     {
         title: "Civil Society",
-        image: "/images/civil.jpg",
+        image: `${process.env.PUBLIC_URL}/images/civil.jpg`,
         content: (
             <>
                 <Typography component="p">
@@ -313,7 +303,7 @@ const useCases = [
     },
     {
         title: "Credit and Finance",
-        image: "/images/credit.jpg",
+        image: `${process.env.PUBLIC_URL}/images/credit.jpg`,
         content: (
             <>
                 <Typography component="p">
@@ -350,7 +340,7 @@ const useCases = [
     },
     {
         title: "Multi-lateral Agencies",
-        image: "/images/multi.jpg",
+        image: `${process.env.PUBLIC_URL}/images/multi.jpg`,
         content: (
             <>
                 <Typography component="p">
@@ -399,7 +389,7 @@ const useCases = [
     },
     {
         title: "Insurance Industry",
-        image: "/images/insurance.png",
+        image: `${process.env.PUBLIC_URL}/images/insurance.png`,
         content: (
             <>
                 <Typography component="p">
@@ -429,7 +419,7 @@ const useCases = [
     },
     {
         title: "Agri-food Industry",
-        image: "/images/agri.jpg",
+        image: `${process.env.PUBLIC_URL}/images/agri.jpg`,
         content: (
             <>
                 <Typography component="p">
@@ -455,7 +445,6 @@ const useCases = [
         ),
     },
 ];
-
 const partnertooltip = {
     1: "Bangladesh Agricultural Research Council (BARC)",
     2: "Nepal Agricultural Research Council",
@@ -467,7 +456,6 @@ const partnertooltip = {
     8: "Columbia University",
     9: "Evans School Policy Analysis and Research (EPAR), University of Washington",
 }
-
 function TabPanel({ children, value, index }) {
     return (
         value === index && (
@@ -477,13 +465,11 @@ function TabPanel({ children, value, index }) {
         )
     );
 }
-
 function TestHome(props) {
     const { country } = useParams();
     const theme = useTheme();
     const [value, setValue] = useState(0);
     const [loading, setLoading] = useState(false);
-
     const mediaItems = useMemo(() => {
         const copy = [...items];
         const picked = [];
@@ -493,8 +479,6 @@ function TestHome(props) {
         }
         return picked;
     }, []);
-
-
     // cycle through those 3
     const [mediaIdx, setMediaIdx] = useState(0);
     useEffect(() => {
@@ -503,27 +487,22 @@ function TestHome(props) {
         }, 4000); // change every 3.5s
         return () => clearInterval(id);
     }, [mediaItems.length]);
-
     // slide through the 3 types
     // const [typeIdx, setTypeIdx] = useState(0);
     // useEffect(() => {
-    //     const id = setInterval(() => {
-    //         setTypeIdx((i) => (i + 1) % types.length);
-    //     }, 4000); // change every 3.5s
-    //     return () => clearInterval(id);
+    // const id = setInterval(() => {
+    // setTypeIdx((i) => (i + 1) % types.length);
+    // }, 4000); // change every 3.5s
+    // return () => clearInterval(id);
     // }, []);
-
     const currentMedia = mediaItems[mediaIdx];
-
     useEffect(() => {
         document.documentElement.style.overflowX = "hidden";
         document.body.style.overflowX = "hidden";
     }, []);
-
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
     const settings = {
         dots: false,
         infinite: true,
@@ -534,47 +513,41 @@ function TestHome(props) {
         autoplaySpeed: 8000,
         arrows: false,
     };
-
     const partnerLogos = [3];
     const contryLogos = [8];
-
     const { mode } = useContext(ThemeContext);
-
     if (loading) {
         return <LoadingPage />; // Show loading screen while loading is true
     }
     // const PopperMessage = () => (
-    //     <Box
-    //         sx={{
-    //             position: "absolute",
-    //             top: 10,
-    //             right: 20,
-    //             backgroundColor: (theme) => (theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.7)"),
-    //             color: mode === "dark" ? "#e0e0e0" : "#ffffff",
-    //             padding: "10px",
-    //             borderRadius: "5px",
-    //             width: "250px",
-    //             textAlign: "center",
-    //             zIndex: 1000,
-    //         }}
-    //     >
-    //         <Typography variant="body2" fontStyle={"italic"}>
-    //             {" "}
-    //             <GppMaybeIcon fontSize="11px" sx={{ marginX: "2px", marginY: 0 }} />
-    //             Disclaimer: This is an internal test version of ACASA. Please do not cite or quote the data.
-    //         </Typography>
-    //     </Box>
+    // <Box
+    // sx={{
+    // position: "absolute",
+    // top: 10,
+    // right: 20,
+    // backgroundColor: (theme) => (theme.palette.mode === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.7)"),
+    // color: mode === "dark" ? "#e0e0e0" : "#ffffff",
+    // padding: "10px",
+    // borderRadius: "5px",
+    // width: "250px",
+    // textAlign: "center",
+    // zIndex: 1000,
+    // }}
+    // >
+    // <Typography variant="body2" fontStyle={"italic"}>
+    // {" "}
+    // <GppMaybeIcon fontSize="11px" sx={{ marginX: "2px", marginY: 0 }} />
+    // Disclaimer: This is an internal test version of ACASA. Please do not cite or quote the data.
+    // </Typography>
+    // </Box>
     // );
-
     return (
         <Box
             sx={{
                 bgcolor: theme.palette.mode === "dark" ? "#2c2f34" : "#f5f5f5",
             }}>
-
             <div style={{ backgroundColor: theme.palette.mode === "dark" ? "#25292e" : "#ffffff" }}>
                 <Box sx={{ marginTop: "85px", display: "block" }}>
-
                     <Paper sx={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden" }}>
                         {/* Optional loading logic with thumbnail, if needed */}
                         {loading && (
@@ -595,7 +568,6 @@ function TestHome(props) {
                                 <img src={props.item.videothumb} alt="Loading" style={thumbstyle} />
                             </Box>
                         )}
-
                         {/* Background video or image */}
                         {currentMedia.video.match(/\.(mp4|webm)$/) ? (
                             <ReactPlayer
@@ -640,7 +612,6 @@ function TestHome(props) {
                                 }}
                             />
                         )}
-
                         {/* Overlay */}
                         <Box
                             sx={{
@@ -654,7 +625,6 @@ function TestHome(props) {
                                 zIndex: 1,
                             }}
                         />
-
                         {/* Foreground content */}
                         <Box
                             sx={{
@@ -691,7 +661,6 @@ function TestHome(props) {
                             >
                                 Interconnections between climate risks, practices, technologies, and policies
                             </Typography>
-
                             <Box
                                 sx={(theme) => ({
                                     background:
@@ -716,7 +685,6 @@ function TestHome(props) {
                                     </Typography>
                                 </Slide> */}
                             </Box>
-
                             <Button
                                 variant="contained"
                                 href="/#/dashboard"
@@ -766,7 +734,6 @@ function TestHome(props) {
                         </Box>
                         {/* <PopperMessage /> */}
                     </Paper>
-
                     {/* <Box
                         sx={{
                             position: "relative",
@@ -794,7 +761,6 @@ function TestHome(props) {
                             <img src={"srilanka.png"} style={logoStyle4} alt="srilanka" loading="lazy" />
                         </Box>
                     </Box> */}
-
                     {/* <Box sx={{ mt: "20px" }}>
                         <Typography
                             variant="h2"
@@ -906,8 +872,6 @@ function TestHome(props) {
                         </Box>
                     </Box> */}
                 </Box>
-
-
                 {/*<Box
                     sx={{
                         marginTop: "80px",
@@ -930,8 +894,6 @@ function TestHome(props) {
                     </Typography>
                 </Box>*/}
             </div>
-
-
             <Container maxWidth="xl">
                 <Box
                     className="AboutSection"
@@ -940,9 +902,9 @@ function TestHome(props) {
                         bgcolor: theme.palette.mode === "dark" ? "#2c2f34" : "#f5f5f5",
                         borderRadius: "12px",
                         // boxShadow:
-                        //     theme.palette.mode === "dark"
-                        //         ? "0px 4px 10px rgba(0,0,0,0.4)"
-                        //         : "0px 4px 10px rgba(0,0,0,0.1)",
+                        // theme.palette.mode === "dark"
+                        // ? "0px 4px 10px rgba(0,0,0,0.4)"
+                        // : "0px 4px 10px rgba(0,0,0,0.1)",
                     }}
                 >
                     <Typography
@@ -954,7 +916,6 @@ function TestHome(props) {
                             fontSize: '60px',
                             textAlign: 'center',
                             lineHeight: '70'
-
                         }}
                     >
                         <span sx={{ color: theme.palette.mode === "dark" ? "#fff" : "#c4ecc2" }}>Tour</span> the <span sx={{ color: theme.palette.mode === "dark" ? "#fff" : "#c4ecc2" }}>Atlas</span>
@@ -969,9 +930,7 @@ function TestHome(props) {
                     >
                         Aesthetics to be harmonised with Explore climate risks like never
                     </Typography> */}
-
                 </Box>
-
                 <Box
                     sx={{
                         position: "relative",
@@ -979,7 +938,7 @@ function TestHome(props) {
                         height: 500, // 👈 custom height (px, vh, rem — up to you)
                         borderRadius: 2,
                         overflow: "hidden",
-                        mt:3
+                        mt: 3
                     }}
                 >
                     <Box
@@ -995,9 +954,7 @@ function TestHome(props) {
                         }}
                     />
                 </Box>
-
             </Container>
-
             <Container maxWidth="sm">
                 <Box
                     className="AboutSection"
@@ -1006,9 +963,9 @@ function TestHome(props) {
                         bgcolor: theme.palette.mode === "dark" ? "#2c2f34" : "#f5f5f5",
                         borderRadius: "12px",
                         // boxShadow:
-                        //     theme.palette.mode === "dark"
-                        //         ? "0px 4px 10px rgba(0,0,0,0.4)"
-                        //         : "0px 4px 10px rgba(0,0,0,0.1)",
+                        // theme.palette.mode === "dark"
+                        // ? "0px 4px 10px rgba(0,0,0,0.4)"
+                        // : "0px 4px 10px rgba(0,0,0,0.1)",
                     }}
                 >
                     <Typography
@@ -1020,7 +977,6 @@ function TestHome(props) {
                             fontSize: '60px',
                             textAlign: 'center',
                             lineHeight: '70'
-
                         }}
                     >
                         Explore <span sx={{ color: theme.palette.mode === "dark" ? "#fff" : "#c4ecc2" }}>Climate Risk</span> Like Never Before
@@ -1048,7 +1004,6 @@ function TestHome(props) {
                     </Typography>
                 </Box>
             </Container>
-
             <Container maxWidth="md">
                 <Box sx={{ mt: 4, mb: 4 }}>
                     <Grid container spacing={2}>
@@ -1083,9 +1038,7 @@ function TestHome(props) {
                                 </Card> </Grid>))}
                     </Grid>
                 </Box>
-
             </Container>
-
             <Container
                 maxWidth="xl"
                 sx={{
@@ -1106,7 +1059,7 @@ function TestHome(props) {
                     <Container maxWidth="lg">
                         <img
                             className="w-100"
-                            src="ACASA_Approach_SL.svg"
+                            src={`${process.env.PUBLIC_URL}/ACASA_Approach_SL.svg`}
                             style={{
                                 filter: theme.palette.mode === "dark" ? "invert(93%) sepia(5%) saturate(166%) hue-rotate(180deg) brightness(100%) contrast(85%)" : "none",
                             }}
@@ -1132,7 +1085,6 @@ function TestHome(props) {
                     </Container>
                 </Box>
             </Container>
-
             <Container
                 maxWidth="xl"
                 sx={{
@@ -1140,7 +1092,6 @@ function TestHome(props) {
                 }}
             >
                 <Box className="aboutSectionApproach" sx={{ mt: 0, pb: 0, pt: 4 }}>
-
                     <Typography
                         variant="h1"
                         sx={{
@@ -1193,7 +1144,6 @@ function TestHome(props) {
                             />
                         ))}
                     </Tabs>
-
                     {useCases.map((useCase, index) => (
                         <TabPanel key={index} value={value} index={index}>
                             <Container maxWidth="xl">
@@ -1274,7 +1224,6 @@ function TestHome(props) {
                             </Container>
                         </TabPanel>
                     ))}
-
                     <Button
                         component={Link}
                         to="/usecases"
@@ -1293,7 +1242,6 @@ function TestHome(props) {
                     </Button>
                 </Box>
             </Container>
-
             {/* <Container
                 maxWidth="xl"
                 sx={{
@@ -1353,7 +1301,6 @@ function TestHome(props) {
                                                     borderRadius: "8px",
                                                 }}
                                             >
-
                                             </Box>
                                             <Box className="ContentBox">
                                                 <Typography
@@ -1379,7 +1326,6 @@ function TestHome(props) {
                                                         fontSize: "12px",
                                                         lineHeight: 1.6,
                                                         mt: 2,
-
                                                     }}
                                                 >
                                                     {resource.description}
@@ -1406,11 +1352,9 @@ function TestHome(props) {
                     </Container>
                 </Box>
             </Container> */}
-
             <Container maxWidth="xl" sx={{
                 bgcolor: theme.palette.mode === "dark" ? "#1a1d21" : "#fff",
             }} >
-
                 <Box className="aboutSectionApproach" sx={{ p: 2 }}>
                     <Typography
                         variant="h1"
@@ -1446,12 +1390,11 @@ function TestHome(props) {
                                         alt={resource.title}
                                         sx={{
                                             borderRadius: "8px",
-                                            width: "100%",   // ✅ makes it full width of Card
+                                            width: "100%", // ✅ makes it full width of Card
                                             height: "250px", // ✅ fixed height
                                             objectFit: "cover", // ✅ keeps aspect ratio & crops nicely
                                         }}
                                     />
-
                                     <Box className="ContentBox">
                                         <Typography
                                             variant="h4"
@@ -1484,10 +1427,9 @@ function TestHome(props) {
                         </Grid>
                     ))}
                 </Grid>
-
                 <Button
                     component={Link}
-                    to="/resources"   // 👈 your route path
+                    to="/resources" // 👈 your route path
                     className="btn btnAbout1"
                     sx={{
                         bgcolor: theme.palette.mode === "dark" ? "#61c258" : "#4C9E46",
@@ -1502,7 +1444,6 @@ function TestHome(props) {
                     Explore More
                 </Button>
             </Container>
-
             <Container
                 maxWidth="xl"
                 sx={{
@@ -1537,8 +1478,6 @@ function TestHome(props) {
                             climate-resilient agriculture across South Asia.
                         </Typography>
                     </Container>
-
-
                     <Container maxWidth="xl">
                         <Grid container spacing={3} justifyContent="center" alignItems="center">
                             {partnerLogos.map((num) => (
@@ -1584,21 +1523,19 @@ function TestHome(props) {
                                                 <img
                                                     src={
                                                         theme.palette.mode === "dark" && num === 5
-                                                            ? `/images/partner-${num}-dark.png`
-                                                            : `/images/partner-${num}.png`
+                                                            ? `${process.env.PUBLIC_URL}/images/partner-${num}-dark.png`
+                                                            : `${process.env.PUBLIC_URL}/images/partner-${num}.png`
                                                     }
                                                     alt={`partner-${num}`}
                                                     className="partner-img"
                                                 />
                                             </SleekTooltip>
-
                                             {/* Gate Foundation */}
                                             {/* <img
                                                 src="/images/gateFoundation.png"
                                                 alt=""
                                                 className="partner-img"
                                             /> */}
-
                                         </CardContent>
                                     </Card>
                                 </Grid>
@@ -1607,7 +1544,6 @@ function TestHome(props) {
                     </Container>
                 </Box>
             </Container>
-
             <Container
                 maxWidth="xl"
                 sx={{
@@ -1644,7 +1580,7 @@ function TestHome(props) {
                                 }}
                             >
                                 <img
-                                    src={`/images/country-${num}.png`}
+                                    src={`${process.env.PUBLIC_URL}/images/country-${num}.png`}
                                     alt={`country-${num}`}
                                 />
                             </Card>
@@ -1652,10 +1588,8 @@ function TestHome(props) {
                     </Box>
                 </Box>
             </Container>
-
             <StickyFooter />
         </Box>
     );
 }
-
 export default TestHome;

@@ -17,16 +17,19 @@ import Feedback1 from "./Feedback";
 import ScrollToTop from "./scrolltop";
 import DataGlance from "./Test/DataGlance";
 import AdaptationDataGlance from "./Test/AdaptationDataGlance";
-
 // Initialize Google Analytics
 ReactGA.initialize("G-KE0VBWC68L");
-
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const [validCountries, setValidCountries] = useState([]);
   const apiUrl = process.env.REACT_APP_API_URL;
-
+  // Redirect if not in the subdirectory
+  useEffect(() => {
+    if (!window.location.pathname.startsWith('/srilanka')) {
+      window.location.href = '/srilanka' + window.location.hash;
+    }
+  }, []);
   // Fetch valid countries from API
   useEffect(() => {
     const fetchCountries = async () => {
@@ -45,23 +48,19 @@ function App() {
     };
     fetchCountries();
   }, [apiUrl]);
-
   // Track page views and validate country in URL
   useEffect(() => {
     const path = location.hash ? location.hash.replace(/^#\/?/, "") : location.pathname.replace(/^\//, "");
     const pathSegments = path.split("/");
     const urlCountry = pathSegments[0] && !["home", "dashboard", "dataglance", "access", "usecases", "resources", "about", "feedback", "analytics", "hazardglance", "adaptationglance", "future", "comparison", "summary", "timeline", "adaptation", "adaptation2", "adaptationataglance", "hazardataglance"].includes(pathSegments[0]) ? pathSegments[0] : null;
     const activePageSegment = pathSegments[1] || pathSegments[0] || "home";
-
     // Skip redirection for dashboard routes to allow Test.jsx to handle country param
     if (urlCountry && !validCountries.includes(urlCountry.toLowerCase().replace(/\s+/g, "")) && activePageSegment !== "dashboard") {
       const newPath = pathSegments.slice(1).join("/") || "home";
       navigate(`/${newPath}`, { replace: true });
     }
-
     ReactGA.send({ hitType: "pageview", page: location.pathname + location.search + location.hash });
   }, [location, validCountries, navigate]);
-
   return (
     <div className="App">
       {/* <BrowserCheck /> */}
@@ -114,5 +113,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

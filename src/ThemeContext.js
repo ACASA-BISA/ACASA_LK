@@ -1,14 +1,11 @@
 import React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 export const ThemeContext = React.createContext();
-
 export const ThemeProviderWrapper = ({ children }) => {
   // Initialize theme mode from localStorage or default to "light"
   const [mode, setMode] = React.useState(() => {
     return localStorage.getItem("themeMode") || "light";
   });
-
   // Function to toggle theme and save to localStorage
   const toggleTheme = () => {
     setMode((prevMode) => {
@@ -17,7 +14,6 @@ export const ThemeProviderWrapper = ({ children }) => {
       return newMode;
     });
   };
-
   React.useEffect(() => {
     // Ensure the theme mode is applied correctly when the component mounts
     localStorage.setItem("themeMode", mode);
@@ -29,27 +25,25 @@ export const ThemeProviderWrapper = ({ children }) => {
           mode,
           ...(mode === "dark"
             ? {
-                background: { default: "#1b1f23", paper: "#25292e" }, 
-                text: { primary: "#e0e0e0" },
-                primary: { main: "#81c784" },
-                success: { main: "#4caf50", contrastText: "#fff" },
-              }
+              background: { default: "#1b1f23", paper: "#25292e" },
+              text: { primary: "#e0e0e0" },
+              primary: { main: "#81c784" },
+              success: { main: "#4caf50", contrastText: "#fff" },
+            }
             : {
-                background: { default: "#fff", paper: "#fff" },
-                text: { primary: "#333333" },
-              }),
+              background: { default: "#fff", paper: "#fff" },
+              text: { primary: "#333333" },
+            }),
         },
       }),
     [mode]
   );
-
   React.useEffect(() => {
     const root = document.documentElement;
     if (mode === "dark") {
       root.style.setProperty("--webkit-scrollbar-track", "#1b1f23");
       root.style.setProperty("--webkit-scrollbar-thumb", "#bbbfc4");
       root.style.setProperty("--webkit-scrollbar-thumbhover", "#f1f1f1");
-
       /* Styles for the data catalog page */
       root.style.setProperty("--card-filter-light", "#25292e");
       root.style.setProperty("--background-default-light", "#1b1f23");
@@ -66,10 +60,8 @@ export const ThemeProviderWrapper = ({ children }) => {
       root.style.setProperty("--grouped-button-color", "black");
       root.style.setProperty("--grouped-button-boxshadow", "0px 4px 6px rgba(0, 0, 0, 0.4)");
       root.style.setProperty("--grouped-button-arrow", "6px solid #627a6b; ");
-
       /*Styles for the buttons on the map layers */
       root.style.setProperty("--zoom-extenty-background", "rgba(50, 50, 50, 1)");
-
       /* Styles for usecasestyle.css */
       root.style.setProperty("--usecase-tab-bgcolor", "#387530");
       root.style.setProperty("--usecase-carousel-bgcolor", "#2a2a2a");
@@ -80,20 +72,17 @@ export const ThemeProviderWrapper = ({ children }) => {
       root.style.setProperty("--usecase-imagearea-boxshadow", "0 4px 8px rgba(0, 0, 0, 0.3)");
       root.style.setProperty("--usecase-button-bgcolor", "#333333");
       root.style.setProperty("--usecase-button-color", "#ffffff");
-
       /* Styles for ACASA Posts*/
       root.style.setProperty("--banner-title-text-shadow", "2px 2px 10px rgba(100, 100, 100, 0.3)");
       root.style.setProperty("--banner-title-background", "rgba(200, 200, 200, 0.4)");
       root.style.setProperty("--animated-shape-background", "rgba(184, 143, 26, 0.8)");
       root.style.setProperty("--blog-title-hover-underline", "#81c784");
       root.style.setProperty("--blog-card-bgcolor", "#25292e");
-
     } else {
-
       root.style.setProperty("--webkit-scrollbar-track", "#f1f1f1");
       root.style.setProperty("--webkit-scrollbar-thumb", "#aaaaaa");
       root.style.setProperty("--webkit-scrollbar-thumbhover", "#888888");
-      
+
       /* Styles for the data catalog page */
       root.style.setProperty("--card-filter-light", "#f3f3f3");
       root.style.setProperty("--background-default-light", "#fff");
@@ -110,10 +99,8 @@ export const ThemeProviderWrapper = ({ children }) => {
       root.style.setProperty("--grouped-button-color", "white");
       root.style.setProperty("--grouped-button-boxshadow", "0px 4px 6px rgba(0, 0, 0, 0.2)");
       root.style.setProperty("--grouped-button-arrow", "6px solid #8e918f")
-
       /*Styles for the buttons on the map layers */
       root.style.setProperty("--zoom-extenty-background", "rgba(255, 255, 255, 1)");
-
       /* Styles for usecasestyle.css */
       root.style.setProperty("--usecase-tab-bgcolor", "#4ba046");
       root.style.setProperty("--usecase-carousel-bgcolor", "#f4f4f4");
@@ -124,17 +111,14 @@ export const ThemeProviderWrapper = ({ children }) => {
       root.style.setProperty("--usecase-imagearea-boxshadow", "0 4px 8px rgba(0, 0, 0, 0.1)");
       root.style.setProperty("--usecase-button-bgcolor", "#ffffff");
       root.style.setProperty("--usecase-button-color", "#333333");
-
       /* Styles for ACASA Posts*/
       root.style.setProperty("--banner-title-text-shadow", "2px 2px 10px rgba(0, 0, 0, 0.7)");
       root.style.setProperty("--banner-title-background", "rgba(0, 0, 0, 0.4)");
       root.style.setProperty("--animated-shape-background", "rgba(254, 206, 47, 0.7)");
       root.style.setProperty("--blog-title-hover-underline", "#52911f");
       root.style.setProperty("--blog-card-bgcolor", "#fff");
-
     }
   }, [mode]);
-
   return (
     <ThemeContext.Provider value={{ mode, toggleTheme }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
