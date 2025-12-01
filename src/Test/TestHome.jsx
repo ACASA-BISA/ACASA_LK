@@ -731,7 +731,7 @@ function TestHome(props) {
                                 flexDirection: "column",
                                 gap: 2,
                                 zIndex: 3,
-                                width: { xs: "80%", sm: "300px" },
+                                width: { xs: "80%", sm: "335px" },
                             }}
                         >
                             {rightCards.map((card, idx) => (
@@ -744,7 +744,7 @@ function TestHome(props) {
                                         backdropFilter: "blur(25px)"
                                     }}>
                                     {card.image && (
-                                        <CardMedia component="img" height="50px" width="50px" image={card.image} alt={card.title} />
+                                        <CardMedia component="img" height="45px" width="45px" image={card.image} alt={card.title} />
                                     )}
                                     <CardContent>
                                         <Typography variant="body2" color="text.secondary" sx={{ fontFamily: '"Poppins", sans-serif',}}>

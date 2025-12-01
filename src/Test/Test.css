@@ -841,7 +841,7 @@ button.btnExplore {
 }
 
 .cardImg img {
-    width: 50px;
+    width: 45px;
 }
 
 .cardImg {
@@ -849,11 +849,13 @@ button.btnExplore {
     border-radius: 20px;
     background: #4C9E46;
     backdrop-filter: blur(25px);
+    min-width: 320px;
+    margin-bottom: -6px!important;
 }
 
 .cardImg p {
     color: #fff !important;
-    font-size: 14px !important;
+    font-size: 16px !important;
     font-style: normal;
     font-weight: 400 !important;
     letter-spacing: .01071em;
@@ -872,7 +874,7 @@ button.btnExplore {
     padding: 0px !important;
 }
 
-@media (min-width: 600px) {
+@media cardImg {
     .css-cuefkz-MuiContainer-root {
         max-width: 680px !important;
     }
