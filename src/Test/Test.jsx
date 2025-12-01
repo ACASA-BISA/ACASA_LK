@@ -833,7 +833,7 @@ function Test() {
                                                                 }
                                                                 disabled={!type.status || isLoading || mapLoading}
                                                                 color="primary"
-                                                                style={{ textAlign: "left!important" }}
+                                                                style={{ textAlign: "left!important", fontFamily:'Poppins' }}
                                                             />
                                                         }
                                                         label={
@@ -842,7 +842,7 @@ function Test() {
                                                                     {type.commodity_type}
                                                                 </FormLabel>
                                                                 {type.description && (
-                                                                    <Tooltip title={type.description} arrow>
+                                                                    <Tooltip title={type.description} arrow sx={{fontFamily: "Poppins",}}>
                                                                         <InfoIcon fontSize="small" sx={{ color: "rgba(0, 0, 0, 0.54)",  fontFamily:'Poppins', }} />
                                                                     </Tooltip>
                                                                 )}
@@ -883,9 +883,9 @@ function Test() {
                                     <Collapse in={isSidebarOpen.analysis} timeout="auto" unmountOnExit>
                                         <List component="div" disablePadding sx={{ px: 2 }}>
                                             <Typography variant="subtitle2" sx={{ mt: 2, mb: 1 }} style={{ textAlign: "left", fontFamily:'Poppins', fontWeight:'500', }}>
-                                                <FormLabel style={{ textAlign: "left!important" }} className="formLabel">Select analysis scope</FormLabel>
+                                                <FormLabel style={{ textAlign: "left!important", fontFamily:'Poppins' }} className="formLabel">Select analysis scope</FormLabel>
                                             </Typography>
-                                            <FormGroup style={{ textAlign: "left!important" }}>
+                                            <FormGroup style={{ textAlign: "left!important", fontFamily:'Poppins' }}>
                                                 {analysisScopes.map((scope) => (
                                                     <FormControlLabel
                                                         key={scope.scope_id}
@@ -899,7 +899,7 @@ function Test() {
                                                                 }
                                                                 disabled={!scope.status || isLoading || mapLoading}
                                                                 color="primary"
-                                                                style={{ textAlign: "left!important" }}
+                                                                style={{ textAlign: "left!important", fontFamily:'Poppins' }}
                                                             />
                                                         }
                                                         label={
@@ -918,7 +918,7 @@ function Test() {
                                                                     {scope.scope}
                                                                 </span>
                                                                 {scope.description && (
-                                                                    <Tooltip title={scope.description} arrow>
+                                                                    <Tooltip title={scope.description} arrow sx={{fontFamily: "Poppins",}}>
                                                                         <InfoIcon fontSize="small" sx={{ color: "rgba(0, 0, 0, 0.54)",  fontFamily:'Poppins', }} />
                                                                     </Tooltip>
                                                                 )}
@@ -962,7 +962,7 @@ function Test() {
                                                                     {scale.scale}
                                                                 </span>
                                                                 {scale.description && (
-                                                                    <Tooltip title={scale.description} arrow>
+                                                                    <Tooltip title={scale.description} arrow sx={{fontFamily: "Poppins",}}>
                                                                         <InfoIcon fontSize="small" sx={{ color: "rgba(0, 0, 0, 0.54)",  fontFamily:'Poppins', }} />
                                                                     </Tooltip>
                                                                 )}
@@ -1039,7 +1039,7 @@ function Test() {
                                                                                 }
                                                                                 disabled={!commodity.status || isLoading || mapLoading || selectedScopeId === 2}
                                                                                 color="primary"
-                                                                                style={{ textAlign: "left!important" }}
+                                                                                style={{ textAlign: "left!important", fontFamily:'Poppins' }}
                                                                             />
                                                                         }
                                                                         label={
@@ -1057,7 +1057,7 @@ function Test() {
                                                                                     {commodity.commodity}
                                                                                 </span>
                                                                                 {commodity.description && (
-                                                                                    <Tooltip title={commodity.description} arrow>
+                                                                                    <Tooltip title={commodity.description} arrow sx={{fontFamily: "Poppins",}}>
                                                                                         <InfoIcon fontSize="small" sx={{ color: "rgba(0, 0, 0, 0.54)",  fontFamily:'Poppins', }} />
                                                                                     </Tooltip>
                                                                                 )}
@@ -1105,7 +1105,7 @@ function Test() {
                                             {Object.entries(sortedGroupedRisks).map(([groupId, group]) => (
                                                 <div key={groupId}>
                                                     <Typography variant="subtitle2" sx={{ mt: 2, mb: 1 }} style={{ textAlign: "left", fontFamily:'Poppins', fontWeight:'500', }}>
-                                                        <FormLabel style={{ textAlign: "left!important" }} className="formLabel">{group.name}</FormLabel>
+                                                        <FormLabel style={{ textAlign: "left!important", fontFamily:'Poppins' }} className="formLabel">{group.name}</FormLabel>
                                                     </Typography>
                                                     <FormGroup>
                                                         {group.items.map((risk) => (
@@ -1117,7 +1117,7 @@ function Test() {
                                                                         onChange={() => handleRiskChange(risk.risk_id)}
                                                                         disabled={!risk.status || isLoading || mapLoading}
                                                                         color="primary"
-                                                                        style={{ textAlign: "left!important" }}
+                                                                        style={{ textAlign: "left!important", fontFamily:'Poppins' }}
                                                                     />
                                                                 }
                                                                 label={
@@ -1135,7 +1135,7 @@ function Test() {
                                                                             {risk.risk}
                                                                         </span>
                                                                         {risk.description && (
-                                                                            <Tooltip title={risk.description} arrow>
+                                                                            <Tooltip title={risk.description} arrow sx={{fontFamily: "Poppins",}}>
                                                                                 <InfoIcon fontSize="small" sx={{ color: "rgba(0, 0, 0, 0.54)",  fontFamily:'Poppins', }} />
                                                                             </Tooltip>
                                                                         )}
@@ -1173,7 +1173,7 @@ function Test() {
                                                 <img src={`${process.env.PUBLIC_URL}/images/impact.svg`} alt="Impact" />
                                             </ListItemIcon>
                                             <ListItemText
-                                                primary={<FormLabel style={{ textAlign: "left!important" }} className="formLabel">Climate change impact</FormLabel>}
+                                                primary={<FormLabel style={{ textAlign: "left!important", fontFamily:'Poppins' }} className="formLabel">Climate change impact</FormLabel>}
                                             />
                                             {isSidebarOpen.impact ? <ExpandLess /> : <ExpandMore />}
                                         </ListItemButton>
@@ -1189,7 +1189,7 @@ function Test() {
                                                                     onChange={() => handleImpactChange(impact.impact_id)}
                                                                     disabled={!impact.status || isLoading || mapLoading}
                                                                     color="primary"
-                                                                    style={{ textAlign: "left!important" }}
+                                                                    style={{ textAlign: "left!important", fontFamily:'Poppins' }}
                                                                 />
                                                             }
                                                             label={
@@ -1207,7 +1207,7 @@ function Test() {
                                                                         {impact.impact}
                                                                     </span>
                                                                     {impact.description && (
-                                                                        <Tooltip title={impact.description} arrow>
+                                                                        <Tooltip title={impact.description} arrow sx={{fontFamily: "Poppins",}}>
                                                                             <InfoIcon fontSize="small" sx={{ color: "rgba(0, 0, 0, 0.54)",  fontFamily:'Poppins', }} />
                                                                         </Tooltip>
                                                                     )}
@@ -1243,21 +1243,21 @@ function Test() {
                                             <img src={`${process.env.PUBLIC_URL}/images/option.svg`} alt="Adaptation" />
                                         </ListItemIcon>
                                         <ListItemText
-                                            primary={<FormLabel style={{ textAlign: "left!important" }} className="formLabel">Adaptation</FormLabel>}
+                                            primary={<FormLabel style={{ textAlign: "left!important", fontFamily:'Poppins' }} className="formLabel">Adaptation</FormLabel>}
                                         />
                                         {isSidebarOpen.adaptation ? <ExpandLess /> : <ExpandMore />}
                                     </ListItemButton>
                                     <Collapse in={isSidebarOpen.adaptation} timeout="auto" unmountOnExit>
                                         <List component="div" disablePadding sx={{ px: 2, textAlign: "left" }}>
                                             <Typography variant="subtitle3" sx={{ mt: 2, mb: 1, textAlign: "left!important" }}>
-                                                <FormLabel style={{ textAlign: "left!important" }} className="formLabel">Select intervention for adaptation potential</FormLabel>
+                                                <FormLabel style={{ textAlign: "left!important", fontFamily:'Poppins' }} className="formLabel">Select intervention for adaptation potential</FormLabel>
                                             </Typography>
                                             {groupedAdaptations.map((group) => (
                                                 <div key={group.groupId}>
                                                     <Typography variant="subtitle2" sx={{ mt: 2, mb: 1, textAlign: "left!important" }}>
-                                                        <FormLabel style={{ textAlign: "left!important" }} className="formLabel">{group.name}</FormLabel>
+                                                        <FormLabel style={{ textAlign: "left!important", fontFamily:'Poppins' }} className="formLabel">{group.name}</FormLabel>
                                                     </Typography>
-                                                    <FormGroup style={{ textAlign: "left!important" }}>
+                                                    <FormGroup style={{ textAlign: "left!important", fontFamily:'Poppins' }}>
                                                         {group.items.map((adaptation) => (
                                                             <FormControlLabel
                                                                 key={adaptation.adaptation_id}
@@ -1267,7 +1267,7 @@ function Test() {
                                                                         onChange={() => handleAdaptationChange(adaptation.adaptation_id)}
                                                                         disabled={!adaptation.status || isLoading || mapLoading}
                                                                         color="primary"
-                                                                        style={{ textAlign: "left!important" }}
+                                                                        style={{ textAlign: "left!important", fontFamily:'Poppins' }}
                                                                     />
                                                                 }
                                                                 label={
@@ -1286,8 +1286,8 @@ function Test() {
                                                                             {adaptation.adaptation}
                                                                         </span>
                                                                         {adaptation.description && (
-                                                                            <Tooltip title={adaptation.description} arrow>
-                                                                                <InfoIcon fontSize="small" sx={{ color: "rgba(0, 0, 0, 0.54)" }} />
+                                                                            <Tooltip title={adaptation.description} arrow sx={{fontFamily: "Poppins",}}>
+                                                                                <InfoIcon fontSize="small" sx={{ color: "rgba(0, 0, 0, 0.54)", fontFamily: "Poppins", }} />
                                                                             </Tooltip>
                                                                         )}
                                                                     </Box>
